@@ -1,3 +1,1 @@
 Welcome to ECE 190!
-
-Remove last line.
