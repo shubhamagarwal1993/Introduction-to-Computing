@@ -1,0 +1,104 @@
+ECE190 Lab 2 questions
+
+Answer the following questions as clearly and succinctly possible.
+
+Signed integer computation
+
+In signed 16-bit mode, run the following computations with bincalc:
+
+1. 100 - 199
+2. 1000 + 243
+3. 21000 + 22000
+4. 32767 + 1
+5. -32767 - 1
+
+Answer the following questions:
+
+1. What is the largest value representable in 16-bit signed format? Smallest?
+Ans:
+
+
+2. What is the result of the third computation? Why?
+Ans:
+
+
+3. Why does the fourth computation overflow, but not the fifth?
+Ans:
+
+
+4. If you were to start at 0, and increment repeatedly (add 1), what pattern would you see (in signed mode)?
+Ans:
+
+
+Unsigned integer computation
+
+In unsigned 16-bit mode, run the following computations:
+
+1. 100 - 199
+2. 21000 + 22000
+3. 32767 + 1
+
+Answer the following questions:
+
+1. What is the largest value representable in 16-bit unsigned format? Smallest?
+Ans:
+
+
+2. What result do you get from the first computation? Why?
+Ans:
+
+
+3. Why doesn't the second or third computation overflow?
+Ans:
+
+
+4. If you were to start at 0, and increment repeatedly (add 1), what pattern would you see (in unsigned mode)?
+Ans:
+
+
+5. What are the advantages and disadvantages of unsigned formats (compared to signed formats)?
+Ans:
+
+
+
+Floating point
+
+Run the following computations in single-precision (32-bit) floating-point mode:
+
+1. 1000 + 1
+2. 11 / 3
+3. 100 - 0.25
+4. 100 - 0.3
+5. -100 + 0.3
+6. 9000 + 0.0001 - 9005
+7. 9000 - 9005 + 0.0001
+8. 9000 + 0.01
+9. 9000 * 0.01
+
+Answer the following questions:
+
+1. Why is there an error in the fourth computation, but not the third? (Hint: how do you encode 0.25 and 0.3 in floating point?)
+Ans:
+
+
+2. How does the result of the fifth computation compare to the fourth? Explain. (Hint: look at the hex representations of the results. How does the floating point format handle negative numbers?)
+Ans:
+
+
+3. Mathematically, would you expect the same results in computations 6 and 7? Do you observe this result experimentally? Explain. (Hint: try stepping through each computation)
+Ans:
+
+
+4. What happens if you try computation 6 in double-precision (64-bit) floating-point mode? Why?
+Ans:
+
+
+5. Why is there noticeable error in computation 8, but not 9? (Hint: think of multiplying floating point numbers like multiplying two numbers in scientific notation, how do you do it?)
+Ans:
+
+
+6. The root cause of the Ariane 5 rocket failure was isolated to the conversion of a floating point number, which stored the horizontal component of the rocket's velocity, to a 16-bit signed integer. What is the most likely cause of the failure? (Hint: this wasn't some small rounding error, the computed velocity was way off, causing the system to go haywire)
+Ans:
+
+
+
