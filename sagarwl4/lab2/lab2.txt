@@ -7,27 +7,38 @@ Signed integer computation
 In signed 16-bit mode, run the following computations with bincalc:
 
 1. 100 - 199
+answer: -99(xff9d) 
+
 2. 1000 + 243
+answer: 1243(x04db)
+
 3. 21000 + 22000
+answer: -22536(xa7f8)
+
 4. 32767 + 1
+answer: -32768(x8000)
+
 5. -32767 - 1
+answer: -32768(x8000)
+
+
 
 Answer the following questions:
 
 1. What is the largest value representable in 16-bit signed format? Smallest?
-Ans:
-
+Answer: 			The largest value representable in 16-bit signed format is 32767(x7fff). (2^15-1).
+					The smallest value representable in 16-bit signed format is -32768(x8000).(-2^15).
 
 2. What is the result of the third computation? Why?
-Ans:
-
+Answer: 			The actual sum of the 3rd computation is 43000. howwever since the largest number can be only 32767, the sum start adding again from the smallest number(due to overflow). If we see, the diff (43000-32767) is 					10233. if we add this to the smallest number -32768, we get -22535. The answer is -22536 which is because we added an extra 1 to go from 32767 to -32768. Thus we see that after overflow, the answer actually 						wraps around.
 
 3. Why does the fourth computation overflow, but not the fifth?
-Ans:
-
+Answer: 			So, the largest positive number here can be 32767(2^15-1) and the 4th computation adds 1 to the largest positive number 32767 which results in the answer to go to-32768.Thus, the overfow.
+					The smallest negative number here can be -32768. The 5th computation adds a nagative 1 to the second smallest negative number -32767 and so we get the answer to be -32768.Thus, no overflow. 
 
 4. If you were to start at 0, and increment repeatedly (add 1), what pattern would you see (in signed mode)?
-Ans:
+Ans: 				If we start at 0 and keep adding 1, we can go upto 32767, which is the largest positvie number in 16bit signed mode. If we add a 1 now, we will reach -32768 which is the smallest number(due to overflow ). 						Further, on adding 1, we go up the negative numbers upto 0 and then to 32767 again.  
+
 
 
 Unsigned integer computation
@@ -35,30 +46,35 @@ Unsigned integer computation
 In unsigned 16-bit mode, run the following computations:
 
 1. 100 - 199
+answer: 65437 (xff9d)
+
+
 2. 21000 + 22000
+answer: 43000 (xa7f8)
+
+
 3. 32767 + 1
+answer: 32768 (x8000)
+
 
 Answer the following questions:
 
 1. What is the largest value representable in 16-bit unsigned format? Smallest?
-Ans:
-
+Answer:				The smallest number that can be represented in 16-bit unsigned format is 0 and
+					The largetst number that can be represented in 16-bit unsigned format is 65535 (2^16-1).
 
 2. What result do you get from the first computation? Why?
-Ans:
-
+Answer: 			The 1st computation gives back 65437 (xff9d) becasue the actual answer would be -99 but this is unsigned format. So again the difference will wrap around and we will negate 98 from the largest number which will 						give us 65437 and that is precisely the answer. 
 
 3. Why doesn't the second or third computation overflow?
-Ans:
-
+Answer:				The 2nd and 3rd computations give us 43000 and 32768, but unsigned 16-bit format can handle numbers from 0 to 65535. Thus, our numbers are within the maximum range and do not overflow.
 
 4. If you were to start at 0, and increment repeatedly (add 1), what pattern would you see (in unsigned mode)?
-Ans:
-
+Ans:				If we are at 0 and keep adding 1, we will go upto the largest number 65535(2^16-1). On further adding 1, we will go back to 0 due to overflow.
 
 5. What are the advantages and disadvantages of unsigned formats (compared to signed formats)?
-Ans:
-
+Ans:				Advantages: Unsigned formats suggest a universal numbering system, easy to perform arithmetic operations and calculations like addition and subtraction. 
+					Disadvantages: Unsigned formats cannot store or compute negative numbers.
 
 
 Floating point
@@ -66,39 +82,70 @@ Floating point
 Run the following computations in single-precision (32-bit) floating-point mode:
 
 1. 1000 + 1
+answer:1001.000000 (x447a4000)
+
 2. 11 / 3
+answer:3.666667 (x406aaaab)
+
 3. 100 - 0.25
+answer:99.750000 (x42c78000)
+
 4. 100 - 0.3
-5. -100 + 0.3
+answer:99.699991 (x42c76666)
+
+5. -100 + 0.3unds 
+answer:-99.699997 (xc2c76666)
+
 6. 9000 + 0.0001 - 9005
+answer:-5.000000 (xc0a00000)
+
 7. 9000 - 9005 + 0.0001
+answer:-4.999900 (xc09fff2e)
+
 8. 9000 + 0.01
+answer: 9000.009766 (x460ca00a)
+
 9. 9000 * 0.01
+answer: 90.000000 (x42b40000)
 
 Answer the following questions:
 
 1. Why is there an error in the fourth computation, but not the third? (Hint: how do you encode 0.25 and 0.3 in floating point?)
-Ans:
+Ans:			So when we store floating points in binary, we can store 0.25 as 0.01 in binary. 
+				However, when we attempt to store 0.3 in binary we store it as a recurring bianry number 0.0100110011
+				Thus, the computer considering rounding errors gives an inaccurate answer to the 4th computation but not the 3rd.	   
 
 
 2. How does the result of the fifth computation compare to the fourth? Explain. (Hint: look at the hex representations of the results. How does the floating point format handle negative numbers?)
-Ans:
+Ans:			the 5th computation actually gives a negative number. We see that the first digit has actually changed to a negative hexdecimal 'c' which is 1100.  			
 
+				In the 4th computation, the floating point format properly stores 100, however, it cannot store 0.3 accuratey and the computer while adding roun it to the nearest numbers 
+				thus the error in nagting 0.3 and we get 99.699991.
+				In the 5th computation, the floating point format stores -100, however while adding 0.3, there is a slight error again because of rounding and we get -99.699997.    
+ 
 
 3. Mathematically, would you expect the same results in computations 6 and 7? Do you observe this result experimentally? Explain. (Hint: try stepping through each computation)
-Ans:
-
+Ans:			Mathematically, we would expect the same answer in computation 6 and 7. Experimantally, in bincalc we get a slightly different answer. 
+			
+				So, the floating point format rounds off the answer after computing the value. In 6, When we add 0.0001 to 9000, the expected answer 9000.0001 goes out of range of f32 format as the number is very big 					to be represented and rounding off we get 9000 as the sum of the first two terms. Thus the 6th question gives us -5.000000.
+				
+				In 7th, we first find 9000.0.000000-9005.000000 and get -5.000000. At this point, we have enough bits left to calculate and represent 0.0001 and we get the accurate answer -4.999900.
+				On rounding this number, we get the answer as it is. 
+				
+				Thus, we see that the results vary if we change the order of computation. 
 
 4. What happens if you try computation 6 in double-precision (64-bit) floating-point mode? Why?
-Ans:
+Ans:			If we try to compute 6th in f64 format, we get -4.999900 as our answer and we see that the 0.0001 has been taken into account as this format can handle many more bits and now we can represent it.
 
 
 5. Why is there noticeable error in computation 8, but not 9? (Hint: think of multiplying floating point numbers like multiplying two numbers in scientific notation, how do you do it?)
-Ans:
+Ans:			We cannot represent decimal 0.01 in floating point accurately and thus we see the noticible error in 8th.
+ 
+				In 9th, the computer puts both our numbers in floating point format and changes the numbers to scientific notations, i.e. 0.0001 as 1*10^-3. Thus, the powers are properly calculated and we get the 					accurate answer.  
 
 
 6. The root cause of the Ariane 5 rocket failure was isolated to the conversion of a floating point number, which stored the horizontal component of the rocket's velocity, to a 16-bit signed integer. What is the most likely cause of the failure? (Hint: this wasn't some small rounding error, the computed velocity was way off, causing the system to go haywire)
-Ans:
+Answer:			Most probably, there must have been an overflow while conversion of the floating point number to a 16-bit signed number. This would make the system to give a very different answer and must hve caused 				the Ariane 5 rocket failure. 
 
 
 
