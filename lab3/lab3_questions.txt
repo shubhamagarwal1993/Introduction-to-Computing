@@ -1,7 +1,15 @@
 QUESTION 1.  Read through the program lab3.bin.  What do you expect the program to do?  More specifically, which register will the program modify when it is run, and what will it contain when the program finishes?  (You can probably figure this out merely by reading the comments provided in lab3.bin.)
  
-ANSWER:
+ANSWER:	The program basically puts the value of 12 into register 2.
+The program clears the value of R2 by ANDing it with 0. It then ADDs the decimal number 12 to R2 and stores it in R2 itself.
+
+So, the 1st line specifies the address as to where the program will be stored. 
+The 2nd line clears the value (in case there was some other value in it) in R2. 
+The 3rd line adds 12 to the existing 0 in R2 and stores it in R2.
+The 4th line halts the program.
+
+After the program finishes, we will expect R2 to have the value 12 stored in it.ccc 
  
 QUESTION 2.  Explain in a few sentences why the ability to step through a program (run one instruction at a time) is a very useful tool for debugging a program.  Debugging is the process of finding and correcting bugs (or errors) in a program.  Hint: Finding a bug is often much more difficult than correcting it.
  
-ANSWER:
+ANSWER:If our program has an error, we would find it difficult to find it. The 'STEP' tool is actually very useful for this. As we go step by step in the program, we know what values we would expect in each register and thus if the value is unexpexted at some point, we know exctly where the error has occured and we wont have to go through the whole program again which is very tedious.
