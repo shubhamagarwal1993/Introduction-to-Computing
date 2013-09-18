@@ -1,0 +1,14 @@
+Question 1: Describe the errors that occur when trying to assemble lab4_code.asm. Identify the cause of each error.
+
+
+
+Question 2: For each label in the code, write down the corresponding memory location. 
+
+
+
+Question 3: Between using labels and explicit memory locations/offsets, which
+one makes the most sense, and why?
+
+
+
+Question 4: If you keep increasing the input, what do you observe and why?
