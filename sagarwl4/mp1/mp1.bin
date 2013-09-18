@@ -1,0 +1,6 @@
+; This is the file you will use for the first Machine Problem
+; of ECE 190.  Make sure to comment your code properly and don't
+; exceed the line limitation for this assignment.  Good luck!
+
+0011 0000 0000 0000  ; specifies where the program will be stored (x3000)
+; YOUR CODE GOES HERE
