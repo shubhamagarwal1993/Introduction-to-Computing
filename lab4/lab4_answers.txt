@@ -1,14 +1,53 @@
 Question 1: Describe the errors that occur when trying to assemble lab4_code.asm. Identify the cause of each error.
+ANSWER: when I try to convert the code from a .asm file to a .obj file, I encounter 8 errors in the first pass. This implies that there are errors in the symbol table. Thus, some labels may be wrong. They are as follows:
 
+ERROR1:14: illegal operands for missing opcode
+this is an inducation of a missing opcode and goes away when we put the .ORIG pseudo code
 
+ERROR2:16: instruction appears before .ORIG
+.ORIG pseudo code was missing in the very first line of the code.
+
+ERROR3: 17-constant outside of allowed range
+the memory address was out of bounds. Thus, I added a label so we dont have to calculate the memory address.
+
+ERROR4: 43-no .END directive found
+the end of the program did not have a 
+
+ERROR5: 19-illegal operands for ADD
+had an extra comma.
+
+ERROR6: 30-constant outside of allowed range
+the memory address was out of bounds. Thus, I added a label so we dont have to calculate the memory address.
+
+ERROR7: 32-label OUTERLOOP has already appeared
+There is apparently a difference if we write 'pn' or 'np' in the BRANCH instruction. So, I reversed the order and the compiler could recognize the instruction. Since, the instruction could not be understood, the compiler felt as if we used the label 'OUTERLOOP' again.
+
+ERROR8: 35-constant outside of allowed range
+the memory address was out of bounds. Thus, I added a label so we dont have to calculate the memory address.
+
+--------------------------------------------------------------------------------------------------------------------------------
 
 Question 2: For each label in the code, write down the corresponding memory location. 
 
+OUTERLOOP	-	x3004	
+INNERLOOP	-	x3005
+INPUT		-	x300E
+ZERO		-	x300F
+NEGONE		-	x3010
+STORERES	-	x3011	
 
+---------------------------------------------------------------------------------------------------------------------------------
 
 Question 3: Between using labels and explicit memory locations/offsets, which
 one makes the most sense, and why?
+Using labels makes more sense because we do not have to count the offset everytime and moreover if we change a line in the middle of the program, we will have to change all the offsets, whereas the labels take care of the offset themselves. 
 
+While counting for offsets, we have to account for a factor of '+1' as the PC increments. The labels take this into account and we do not have to worry about that too.
 
+Thus, using labels makes more sense.
+------------------------------------------------------------------------------------------------------------------------------------
 
 Question 4: If you keep increasing the input, what do you observe and why?
+If the input is 5, we get decimal number 120 a memory location. If we increase the input to 6, we see that we get the value for 6! in the same memory address. Thus, the program essentially calulates the factorial of the input number.(not accounting for 0 and negative numbers.)
+
+This is because we ask the code to multiply the input number with the 'number-1', till the counter reaches 0. Thus, we get the factorial of any integer we want.
