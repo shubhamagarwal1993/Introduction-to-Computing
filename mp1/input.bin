@@ -1,4 +1,6 @@
 0100 0000 0000 0000  ; x4000, start of memory locations for following words
 
-0010 0011 0010 1001  ; 9001, dividend A
-0000 0000 0010 1010  ; 42, divisor B
+0000 0000 0000 1000  ; 8, dividend A
+0000 0000 0000 0011  ; 3, divisor B
+
+
