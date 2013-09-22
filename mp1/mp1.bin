@@ -7,7 +7,7 @@
 ; of ECE 190.  Make sure to comment your code properly and don't
 ; exceed the line limitation for this assignment.  Good luck!
 
-;0011 0000 0000 0000  ; specifies where the program will be stored (x3000)
+0011 0000 0000 0000  ; specifies where the program will be stored (x3000)
 ; YOUR CODE GOES HERE
 
 
@@ -16,41 +16,44 @@
 ; R1 contains A
 ; R2 contains B
 ; R3 contains quotient of A/B
-; R4 contains 
-; R5 contains 
 
-	.ORIG 	x3000			;
+
 ;INITIALIZATION OF ALL THE REGISTERS TO 0
+0101	000 000 1 00000			;clearing R0
+0101	001 001 1 00000			;clearing R1
+0101	010 010 1 00000			;clearing R2
+0101	011 011 1 00000			;clearing R3
 
-	AND	R0,R0,#0		;clearing R0
-	AND 	R1,R1,#0		;clearing R1
-	AND 	R2,R2,#0		;clearing R2
-	AND 	R3,R3,#0		;clearing R3
 
 ;LOADING THE REGISTERS
-	
-	LDI	R1,AVALUE		;A<-M[x4000]: R1 contains dividend - A
-	LDI	R2,BVALUE		;B<-M[x4001]: R2 contains divisor  - B
+1010	001 00000 1110			;**(LDI)**	A<-M[x4000]:R1 contains dividend	
+1010    010 00000 1110			;**(LDI)**	B<-M[x4001]:R2 contains divisor  - B	
 
-	NOT	R2,R2			;we invert b and get -R2 
-	ADD	R2,R2,#1		;R2<-R2+1: add 1 to -B to get 2s complement
+0000	001 00000 0010			;if B is +ve then go to invert b
+0000	100 00000 1000			;if B is -ve then go to halt
+0000	010 000000111			;if B is 0 then go to 
+
+1001	010 010	111111			;we invert b and get -R2 
+0001	010 010 1 00001			;R2<-R2+1: add 1 to -B to get 2s complement
+
 
 ;INITIALIZING THE LOOP OF A-B
-	
+0001	001 001 000 010			;R1<-R1+R2: 	we get A-B and store in R1	
+0000	100 00000 0101			;if A-B is -ve , then branch to HALT.
 
-LOOP1	ADD	R0,R1,R2		;R0<-R1+R2: we get A-B and store in R0	
-	BRnz	SKIP			;if A-B < 0 or -ve number then answer is 0.	
-	ADD	R3,R3,#1		;R3<-R3+#1: we get the quotient of A/B
-	BRp	LOOP1			;if A-B < 0, then subtract B again
-	
-	ST	R3,SKIP			;we store the result in R3 into memory X5000 as asked.	
-	TRAP	x25			;
+0001	011 011 1 00001			;R3<-R3+#1: 	we get the quotient of A/B
+1011 011 000000110			;**(STI)**	Loads the value of R3 into memory x5000
+0000	001 11111 1011			;if A-B < 0, then subtract B again	
 
 
-	
 
-AVALUE	.FILL	x4000			;
-BVALUE	.FILL	x4001			;
-SKIP	.FILL	x5000			;
+0001 011 011 1 11111			;add -1 to R3 and store to R3
+1011 011 000000100			;**(STI)**	Loads the value of R3 into memory x5000 
+1111 0000 0010 0101			;HALT
 
-.END
+
+;memory registers in which we store another memory location for LDI and STI instructions
+0100 0000 0000 0000			;x4000
+0100 0000 0000 0001 			;x4001
+0101 0000 0000 0000			;x5000
+
