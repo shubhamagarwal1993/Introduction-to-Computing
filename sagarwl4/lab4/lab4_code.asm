@@ -11,7 +11,7 @@
 ; R4 contains counter for inner loop
 ; R5 contains current sum
 
-	    .ORIG x3000		      ;*(.ORIG was missing)* - program starts at location x3000	
+.ORIG x3000				  	
 
             LD    R1,INPUT            ; R1 contains input number
             LD    R2,NEGONE           ; R2 contains -1				*(have used a label here)*
@@ -32,12 +32,12 @@ INNERLOOP   ADD   R5,R5,R1            ; Increment sum
             BRzp  OUTERLOOP           ; Branch to outer loop if outer count	*(z and p had been interchanged)*
                                       ;   is positive or zero
 
-            ST   R1,STORERES             ; This address contains X!          
+            ST   R1,STORE          ; This address contains X!          
             TRAP x25
 
 INPUT      .FILL  x0005               ; Input for X!, in this case X = 5
-ZERO	   .FILL  x0000		      ; *(have added a label here)* 	
-NEGONE     .FILL  xFFFF               ; 2's complement of 1 (i.e. -1)		*(have added a label here)*
-STORERES   .FILL  x0000               ; At program completion, the result is
+ZERO	   .FILL  x0000		          ; *(have added a label here)* 	
+NEGONE	   .FILL  xFFFF               ; 2's complement of 1 (i.e. -1)		*(have added a label here)*
+STORE	   .FILL  x0000               ; At program completion, the result is
                                       ;   stored here
 .END

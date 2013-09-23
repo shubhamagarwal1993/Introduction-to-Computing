@@ -48,6 +48,10 @@ Thus, using labels makes more sense.
 ------------------------------------------------------------------------------------------------------------------------------------
 
 Question 4: If you keep increasing the input, what do you observe and why?
-If the input is 5, we get decimal number 120 a memory location. If we increase the input to 6, we see that we get the value for 6! in the same memory address. Thus, the program essentially calulates the factorial of the input number.(not accounting for 0 and negative numbers.)
+If the input is 5, we get decimal number 120 a memory location. If we increase the input to 6, we see that we get the value for 6! in the same memory address. We even get the answers for 7! and 8!. However, when we try 9!, we do not get the answer. 
 
-This is because we ask the code to multiply the input number with the 'number-1', till the counter reaches 0. Thus, we get the factorial of any integer we want.
+Thus, the program essentially calulates the factorial of the input number upto 8!.(not accounting for 0 and negative numbers.)
+
+This maybe because we have a limit of 16 bits in the LC3. So, the maximum value that we can achieve is 32767 and the answer of 9! is 362880. 
+
+
