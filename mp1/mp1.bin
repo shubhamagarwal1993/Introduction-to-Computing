@@ -26,12 +26,12 @@
 
 
 ;LOADING THE REGISTERS
-1010	001 00000 1110			;**(LDI)**	A<-M[x4000]:R1 contains dividend	
-1010    010 00000 1110			;**(LDI)**	B<-M[x4001]:R2 contains divisor  - B	
+1010	001 00001 0010			;**(LDI)**	A<-M[x4000]:R1 contains dividend	
+1010    010 00001 0010			;**(LDI)**	B<-M[x4001]:R2 contains divisor  - B	
 
-0000	001 00000 0010			;if B is +ve then go to invert b
-0000	100 00000 1000			;if B is -ve then go to halt
-0000	010 000000111			;if B is 0 then go to 
+0000	001 00000 0010			;if B is +ve then go to invert B and A+B
+0000	100 00000 1110			;if B is -ve then go to halt
+0000	010 000001000			;if B is 0 then go to adding -1 to R3 and storing in x5000
 
 1001	010 010	111111			;we invert b and get -R2 
 0001	010 010 1 00001			;R2<-R2+1: add 1 to -B to get 2s complement
@@ -39,16 +39,22 @@
 
 ;INITIALIZING THE LOOP OF A-B
 0001	001 001 000 010			;R1<-R1+R2: 	we get A-B and store in R1	
-0000	100 00000 0101			;if A-B is -ve , then branch to HALT.
+0000	100 00000 1001			;if A-B is -ve , then branch to HALT.
+0000	010 00000 0110			;if A-B is 0, then branch to add 1 to R3 and store to R3
 
 0001	011 011 1 00001			;R3<-R3+#1: 	we get the quotient of A/B
-1011 011 000000110			;**(STI)**	Loads the value of R3 into memory x5000
-0000	001 11111 1011			;if A-B < 0, then subtract B again	
+1011 011 000001001			;**(STI)**	Loads the value of R3 into memory x5000
+0000	001 11111 1010			;if R3 > 0, then loop back to A-B. :NOTE: this will always happen.
 
 
 
 0001 011 011 1 11111			;add -1 to R3 and store to R3
+1011 011 000000110			;**(STI)**	Loads the value of R3 into memory x5000 
+0000 111 000000010			;go to halt
+
+0001 011 011 1 00001			;add 1 to R3 and store to R3
 1011 011 000000100			;**(STI)**	Loads the value of R3 into memory x5000 
+
 1111 0000 0010 0101			;HALT
 
 
