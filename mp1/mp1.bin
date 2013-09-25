@@ -53,7 +53,7 @@
 0000 111 000000010			;go to halt
 
 0001 011 011 1 00001			;add 1 to R3 and store to R3
-1011 011 000000100			;**(STI)**	Loads the value of R3 into memory x5000 
+1011 011 000000011			;**(STI)**	Loads the value of R3 into memory x5000 
 
 1111 0000 0010 0101			;HALT
 
