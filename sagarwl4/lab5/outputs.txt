@@ -1,0 +1,6 @@
+0 start
+1 first
+10 second
+101 third
+1010 fourth
+10100 fifth

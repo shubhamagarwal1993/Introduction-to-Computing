@@ -1,11 +1,12 @@
 Place your answers to question 1 below:
 
-1)  
+1) 5 bits - 2's complement (01110)
+   4 bits - unsigned notation (1110)	
 
-2)  
+2) x3FB7 
 
-3)  
+3)  1.75 in decimal	
 
-4)  
+4)  x0015
 
-5)  
+5)  Z = 1,1,0,0
