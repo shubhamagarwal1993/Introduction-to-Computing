@@ -1,7 +1,7 @@
 Answer the following questions
 
 1) What is the major fault with the following code? It is more intuitive to answer it without assembling it.
-
+The major fault is 
 
 
 
@@ -24,5 +24,6 @@ BINARY  .BLKW   #10
 
 
 2) Explain the difference between JSR and the JSRR instructions.
-
+JSR puts the address of the next instruction into R7 and jumps to the label.
+JSRR puts the address of the next insruction into R7 and and jumps to the address contained in the Register.
 
