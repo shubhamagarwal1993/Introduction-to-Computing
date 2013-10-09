@@ -1,0 +1,20 @@
+This is the text file. Questions are for reference and will not be graded.  
+Q1) What is the difference between syntactic error and symantic error? You can use google to search your answer. But you need to understand the difference to answer the next question.
+Ans 1)
+
+
+
+Q2) What errors did you have to correct in the code? What type of errors are they - Linker , Syntactic or Semantic?
+Ans 2)
+
+
+
+Q3) What compiler phase(s) were involved in the errors?
+Ans 3)
+
+
+
+
+Q4) What libraries did you need to link lab7.o with at the linking phase?
+Ans 4)
+
