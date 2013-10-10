@@ -1,20 +1,22 @@
 This is the text file. Questions are for reference and will not be graded.  
+------------------------------------------------------------------------------------------
 Q1) What is the difference between syntactic error and symantic error? You can use google to search your answer. But you need to understand the difference to answer the next question.
 Ans 1)
+syntactic error:(or syntax error) is the error due to missing colon, parenthesis,etc. The code will not compile as the compiler is not following the language we have written. these are code errors
 
+symantic error: is a logical or arithmetic error due to illogical statements detected at run time. These may be using a wrong variable, wrong operation or operations in a wrong order. 
 
-
+--------------------------------------------------------------------------------------------
 Q2) What errors did you have to correct in the code? What type of errors are they - Linker , Syntactic or Semantic?
 Ans 2)
-
-
-
+we had symantic error where we had to shift all the variables in the beginning.
+we had syntactic error where we had not included the necessary libraries and so the compiler could not understand what we had written. 
+--------------------------------------------------------------------------------------------
 Q3) What compiler phase(s) were involved in the errors?
 Ans 3)
+compile
+link
 
-
-
-
+--------------------------------------------------------------------------------------------
 Q4) What libraries did you need to link lab7.o with at the linking phase?
-Ans 4)
-
+Ans 4)the 2 required libraries were 'stdio' (-lc) and 'math.h' (-lm).
