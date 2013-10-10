@@ -2,25 +2,23 @@
 ; Comments
 .ORIG x3100
 
-;save all the registers
+;SAVE ALL THE REGISTERS since we dont want the value of registers to be lost when this subroutine works 
+		ST R0,SAVE_0		;
+		ST R1,SAVE_1		;
+		ST R6,SAVE_6		;
+		ST R7,SAVE_7		;
+
 
 ;PURPOSE OF REGISTERS
-;R0 - will 
-;R1 - used to display a message 
-;R2 - used to check if the size is from 2 to 9
-;R3 - 
-;R4 - 
-;R5 - 
-;R6 - when the size is valid, the size is stored in R6 
-;R7 - 
+;R0 - will be used for all the input and output.
+;R1 - copy of R0 where all the code will be executed.
+;R6 - when the size is valid, the size is stored in R6. 
+;R7 - has the PC value of the next instruction after this subroutine returns. 
 
 
 ;CLEAR REGISTERS
-		AND R0,R0,#0
+		AND R0,R0,#0		;clear
 		AND R1,R1,#0		;clear 
-		AND R2,R2,#0 		;clear
-		;AASCII_L_DIF		;
-		AND R3,R3,#0		;clear
 		AND R6,R6,#0		;clear
 				
 ;CODE EXECUTION
@@ -47,7 +45,7 @@ INVALID		LEA R0,ERRORSIZE	;
 		BRnzp LOOP_ST		;if the input is invalid, then ask for input again
 
 UPPER_LIMIT	ADD R1,R1,#2		;get original value
-		ADD R1,R1,#-9		;clear R2 - will have previos loaded value
+		ADD R1,R1,#-9		;
 		BRp INVALID		
 		BRnz FINAL
 
@@ -56,9 +54,16 @@ FINAL		ADD R1,R1,#9		;input number
 		ADD R6,R6,R1		;loads the final valid input into R6
 
 
-		;load all the registers back
-
+;LOAD ALL THE REGISTERS TO THEIR INITIAL VALUE SO THAT NO VALUE HAS CHANGED AFTER THIS SUBROUTINE
+		LD R0,SAVE_0		;load from x3150
+		LD R1,SAVE_1		;load from x3151
+		LD R6,SAVE_6		;load from x3152
+		LD R7,SAVE_7		;load from x3153
 		RET
 ASKSIZE		.STRINGZ "\nPlease enter the size of your board[2..9]:\n" ; The words that should be displayed to ask size
 ERRORSIZE 	.STRINGZ "\nYour input is not valid!\n"	; The words that should be displayed if the input is not valid
+SAVE_0		.FILL x3150
+SAVE_1		.FILL x3151
+SAVE_6		.FILL x3152
+SAVE_7		.FILL x3153
 .END
