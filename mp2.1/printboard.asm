@@ -29,34 +29,34 @@
 		ADD R6,R6,#3
 
 ;add a blank line
-	;	LEA R0,BLANK_L
-	;	OUT
+		LEA R0,NEXT_LINE
+		PUTS
 		
 	
 ;CODE EXECUTOIN 
 		LD R1,GAMEBOARD
-		ADD R3,R3,R6		;put the input number in R2
+		ADD R3,R3,R6		;put the input number in R3
 		
 		
 
-LINE_AGAIN	ADD R2,R2,R6		;put the input number in R3
+LINE_AGAIN	ADD R2,R2,R6		;put the input number in R2
 LOOP1		ADD R1,R1,#1
 		LDR R0,R1,#0
 		OUT
 		
-		ADD R2,R2,#-1
+		ADD R2,R2,#-1		;acts as a counter for columns
 		BRnz BREAK_LINE
 		BRp LOOP1
 
 BREAK_LINE	LEA R0,NEXT_LINE
 		PUTS
-		ADD R3,R3,#-1
+		ADD R3,R3,#-1		;acts as a counter for rows
 		BRnz STOP
 		BRp LINE_AGAIN
 
 
 ;add a blank line
-STOP		LEA R0,BLANK_L
+STOP		LEA R0,NEXT_LINE		
 		PUTS
 
 ;LOAD ALL THE REGISTERS TO THEIR INITIAL VALUE SO THAT NO VALUE HAS CHANGED AFTER THIS SUBROUTINE
@@ -69,14 +69,13 @@ STOP		LEA R0,BLANK_L
 
 		RET
 
-SAVE_0		.FILL x3150
-SAVE_1		.FILL x3151
-SAVE_2		.FILL x3152
-SAVE_3		.FILL x3153
-SAVE_6		.FILL x3154
-SAVE_7		.FILL x3155
+SAVE_0		.BLKW 1
+SAVE_1		.BLKW 1
+SAVE_2		.BLKW 1
+SAVE_3		.BLKW 1
+SAVE_6		.BLKW 1
+SAVE_7		.BLKW 1
 
-BLANK_L		.STRINGZ "\n"
 NEXT_LINE	.STRINGZ "\n"
 GAMEBOARD	.FILL x35FF
 

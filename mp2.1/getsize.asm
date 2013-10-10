@@ -2,7 +2,7 @@
 ; Comments
 .ORIG x3100
 
-;SAVE ALL THE REGISTERS since we dont want the value of registers to be lost when this subroutine works 
+;SAVE ALL THE REGISTERS  
 		ST R0,SAVE_0		;
 		ST R1,SAVE_1		;
 		ST R6,SAVE_6		;
@@ -36,7 +36,7 @@ LOOP_ST		LEA R0,ASKSIZE		;asks the size from the user
 		ADD R1,R1,#-3
 
 ;CHECKING FOR VALID INPUT
-		ADD R1,R1,#-2		;
+		ADD R1,R1,#-2		;checking for lower limit.
 		BRn INVALID		;
 		BRzp UPPER_LIMIT	;	
 		
@@ -60,10 +60,10 @@ FINAL		ADD R1,R1,#9		;input number
 		LD R6,SAVE_6		;load from x3152
 		LD R7,SAVE_7		;load from x3153
 		RET
-ASKSIZE		.STRINGZ "\nPlease enter the size of your board[2..9]:\n" ; The words that should be displayed to ask size
-ERRORSIZE 	.STRINGZ "\nYour input is not valid!\n"	; The words that should be displayed if the input is not valid
-SAVE_0		.FILL x3150
-SAVE_1		.FILL x3151
-SAVE_6		.FILL x3152
-SAVE_7		.FILL x3153
+ASKSIZE		.STRINGZ "\nPlease enter the size of your board[2..9]:\n" ; Words displayed to ask size
+ERRORSIZE 	.STRINGZ "\nYour input is not valid!\n"	; Words that should be displayed if input is not valid
+SAVE_0		.BLKW 1
+SAVE_1		.BLKW 1
+SAVE_6		.BLKW 1
+SAVE_7		.BLKW 1
 .END
