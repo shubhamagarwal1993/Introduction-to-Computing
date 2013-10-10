@@ -2,7 +2,7 @@
 ; Comments
 .ORIG x3300
 
-;SAVE ALL THE REGISTERS since we dont want the value of registers to be lost when this subroutine works 
+;SAVE ALL THE REGISTERS since 
 		ST R0,SAVE_0		;
 		ST R1,SAVE_1		;
 		ST R2,SAVE_2		;		
@@ -10,13 +10,9 @@
 		ST R7,SAVE_7		;
 
 		ADD R6,R6,#3
-;----------------------------------------------------------------------------------------------------------------------------------------
-;------------------------row starts here-------------------------------------------------------------------------------------------------
-;----------------------------------------------------------------------------------------------------------------------------------------
-
-;SAVE ALL THE REGISTERS since we dont want the value of registers to be lost when this subroutine works 
-				
-		
+;--------------------------------------------------------------------------------------------------
+;------------------------row starts here-----------------------------------------------------------
+;--------------------------------------------------------------------------------------------------
 
 ;PURPOSE OF REGISTERS
 ;R0 - does all the input and output
@@ -24,11 +20,9 @@
 ;R3 - has the -ve of R1, used to determine if the row number entered is right or wrong
 ;R5 - stores the final value of the row number
 
-;CLEAR REGISTERS
-				
 
 ;CODE EXECUTION
-LOOP_ST_R	AND R0,R0,#0		;clear
+LOOP_ST_R	AND R0,R0,#0		;clear the registers at the start of loop
 		AND R1,R1,#0		;clear 
 		AND R3,R3,#0		;clear
 		AND R5,R5,#0		;clear
@@ -41,17 +35,17 @@ LOOP_ST_R	AND R0,R0,#0		;clear
 		OUT
 		
 ;GETTING ACTUAL VALUE IN ASCII
-		ADD R1,R1,#-15		;add 48 (x0030) to the input ASCII 
+		ADD R1,R1,#-15		;subtract 48 (x0030) to the input ASCII 
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-15		;R1 now contains the actual value	
-		ADD R1,R1,#-3
+		ADD R1,R1,#-3		;we get the actual value of input
 
 ;INVERT R1 AND STORE INTO R3
 		NOT R3,R1		;
 		ADD R3,R3,#1		;the -ve 2s complement is stored in R3
 
 ;CHECKING FOR VALID INPUT
-		ADD R1,R1,#-1		;
+		ADD R1,R1,#-1		;checking for validity of lower limit
 		BRn INVALID_R		;
 		BRzp UPPER_LIMIT_R	;	
 		
@@ -67,31 +61,23 @@ UPPER_LIMIT_R	ADD R1,R1,#1		;get original value
 
 
 FINAL_R		ADD R5,R5,R1		;loads the final valid input into R5
-;-----------------------------------------------------------------------------------------------------------------------------------------
-;------------------------row is done------------------------------------------------------------------------------------------------------
-;-----------------------------------------------------------------------------------------------------------------------------------------
+;--------------------------------------------------------------------------------------------------
+;------------------------row is done---------------------------------------------------------------
+;--------------------------------------------------------------------------------------------------
 
-
-
-
-
-
-;-----------------------------------------------------------------------------------------------------------------------------------------
-;-------------------------------column starts here----------------------------------------------------------------------------------------
-;-----------------------------------------------------------------------------------------------------------------------------------------
+;-------------------------------column starts here-------------------------------------------------
+;--------------------------------------------------------------------------------------------------
 
 ;PURPOSE OF REGISTERS
 ;R0 - does all the input and output
 ;R1 - is a copy of R0 and all calculation is done on R1
 ;R3 - has the -ve of R1, used to determine if the column number entered is right or wrong
 ;R4 - stores the final value of the column number
-;R7 - is not touced as it switched between subroutines. its value is however stored and returned just before RET
+;R7 - is not touced as it switched between subroutines, value is stored & returned just before RET
 
-;CLEAR REGISTERS
-		
 
 ;CODE EXECUTION
-LOOP_ST		AND R0,R0,#0		;clear
+LOOP_ST		AND R0,R0,#0		;clear at the start of loop
 		AND R1,R1,#0		;clear 
 		AND R3,R3,#0		;clear
 		AND R4,R4,#0		;clear
@@ -107,14 +93,14 @@ LOOP_ST		AND R0,R0,#0		;clear
 		ADD R1,R1,#-15		;add 48 (x0030) to the input ASCII 
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-15		;R1 now contains the actual value	
-		ADD R1,R1,#-3
+		ADD R1,R1,#-3		;original value of input can be now seen
 
 ;INVERT R1 AND STORE INTO R3
 		NOT R3,R1		;
 		ADD R3,R3,#1		;the -ve 2s complement is stored in R3
 
 ;CHECKING FOR VALID INPUT
-		ADD R1,R1,#-1		;
+		ADD R1,R1,#-1		;checking for lower limit
 		BRn INVALID		;
 		BRzp UPPER_LIMIT	;	
 		
@@ -131,8 +117,8 @@ UPPER_LIMIT	ADD R1,R1,#1		;get original value
 
 FINAL		ADD R4,R4,R1		;loads the final valid input into R4
 
-;----------------------column is done ---------------------------------------------------------------------------------------------------
-
+;----------------------column is done -------------------------------------------------------------
+;--------------------------------------------------------------------------------------------------
 
 ;LOADING BACK THE VALUES OF THE REGISTERS
 
@@ -145,15 +131,15 @@ FINAL		ADD R4,R4,R1		;loads the final valid input into R4
 RET
 
 
-ASKROW .STRINGZ "\nPlease input a valid row number:\n"	; The words that should be displayed to ask row number
-ASKCOLUMN .STRINGZ "\nPlease input a valid column number:\n" ; The words that should be displayed to ask column number
-ERRORINPUT .STRINGZ "\nYour input is not valid."	; The words that should be displayed if the input is not valid
-SAVE_0		.FILL x33FA		;
-SAVE_1		.FILL x33FB		;
-SAVE_2		.FILL x33FC              ;
-SAVE_3		.FILL x33FD		;
-SAVE_6		.FILL x33FE		;
-SAVE_7		.FILL x33FF		;
+ASKROW .STRINGZ "\nPlease input a valid row number:\n"	; Words displayed to ask row number
+ASKCOLUMN .STRINGZ "\nPlease input a valid column number:\n" ; Words displayed to ask column number
+ERRORINPUT .STRINGZ "\nYour input is not valid."	; Words displayed if the input is not valid
+SAVE_0		.BLKW 1			;
+SAVE_1		.BLKW 1			;
+SAVE_2		.BLKW 1			;
+SAVE_3		.BLKW 1 		;
+SAVE_6		.BLKW 1 		;
+SAVE_7		.BLKW 1 		;
 .END
 
 
