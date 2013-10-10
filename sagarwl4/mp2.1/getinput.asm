@@ -144,7 +144,6 @@ FINAL		ADD R4,R4,R1		;loads the final valid input into R4
 		LD R7,SAVE_7		;
 RET
 
-R7VALUE .BLKW 1	; The memory reserved for R7
 
 ASKROW .STRINGZ "\nPlease input a valid row number:\n"	; The words that should be displayed to ask row number
 ASKCOLUMN .STRINGZ "\nPlease input a valid column number:\n" ; The words that should be displayed to ask column number
@@ -156,6 +155,5 @@ SAVE_3		.FILL x33FD		;
 SAVE_6		.FILL x33FE		;
 SAVE_7		.FILL x33FF		;
 .END
-
 
 
