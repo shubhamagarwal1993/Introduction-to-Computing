@@ -1,0 +1,6 @@
+0 J_ballot
+1 T_ballot
+2 start
+3 tom
+4 jerry
+5 bulb_Z
