@@ -3,7 +3,7 @@
 int main()
 {
     int readnums = 0;
-    int p1,p2,p3,p4,p5,p6,p7,total;
+    int p1,p2,p3,p4,p5,p6,total;
     int netid;
     int num = 0;
     FILE* inputfile;
