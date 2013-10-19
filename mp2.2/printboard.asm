@@ -17,7 +17,7 @@
 ;R3 - will be used as a counter for the column
 ;R6 - contains the size of the game board 
  
-
+		
 
 ;CLEAR REGISTERS
 		AND R0,R0,#0		;clear
@@ -25,8 +25,9 @@
 		AND R2,R2,#0		;clear 
 		AND R3,R3,#0		;clear 
 		AND R6,R6,#0		;clear
-		
-		ADD R6,R6,#3
+			
+			
+	
 
 ;add a blank line
 		LEA R0,NEXT_LINE
@@ -40,7 +41,7 @@
 		
 
 LINE_AGAIN	ADD R2,R2,R6		;put the input number in R2
-LOOP1		ADD R1,R1,#1
+LOOP1	ADD R1,R1,#1
 		LDR R0,R1,#0
 		OUT
 		
