@@ -26,9 +26,9 @@
 		ADD R3,R5,#-1		;R0W-1
 
 		ADD R2,R6,#0		;loop to get (row-1)*size
-DO_ROW		ADD R3,R3,#0		;		
+DO_ROW	ADD R3,R3,#0		;		
 		ADD R2,R2,#-1		;
-		BRp DO_ROW		;loop ends
+		BRp DO_ROW			;loop ends
 		ADD R1,R3,#0
 		
 		AND R2,R2,#0		;	
@@ -36,47 +36,35 @@ DO_ROW		ADD R3,R3,#0		;
 		
 		ADD R1,R2,#0		;R1 now has (row-1)*size+(column-1)+GAMEBOARD
 ;--------------------------------------------------------------------------
-
+		
 		ST R1,GAME_SAVE
+		LDI R1, GAME_SAVE
 		
 		AND R2,R2,#0		;clear registers
 		AND R3,R3,#0		;clear registers
 		
 ;------------FLIP THE MAIN NUMBER------------------------------------------
 		
-		ADD R2,R2,#-1		; 
-		ADD R3,R1,R2		;	
+		ADD R3,R1,#-1		;	
 		BRzp CHANGE_0_M		;
 		BRn CHANGE_1_M		;
 
 CHANGE_0_M	LD R1,val_zero		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-3		;		
-		ST R1,ZIP_1		;
-		BRnzp DISPLAY_M		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-3		;		
+			BRnzp DONE 			;
 
 CHANGE_1_M	LD R1,val_one		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-3		;		
-		ST R1,ZIP_2		;		
-		BRnzp DISPLAY_M_1	;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-3		;		
+			BRnzp DONE			;
 		
-
-DISPLAY_M	LEA R0,ZIP_1		;
-		PUTS			;
-		BRnzp DONE		;
-
-DISPLAY_M_1	LEA R0,ZIP_2		;
-		PUTS			;
-		BRnzp DONE		;
-;------HOW TO DISPLAY THE FLIP ?-----------------------------------------
-
 ;---------changing (col+1)-----------------------------------------------
-DONE		AND R1,R1,#0		
+DONE	AND R1,R1,#0		
 		AND R2,R2,#0
 		AND R3,R3,#0
 		
@@ -93,31 +81,17 @@ CHANGE_0_M_Q	LD R1,val_zero		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-3		;		
-		ST R1,ZIP_3		;
-		BRnzp DISPLAY_M_Q		;
+		BRnzp DONE_Q		;
 
 CHANGE_1_M_Q	LD R1,val_one		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-3		;				
-		ST R1,ZIP_4		;		
-		BRnzp DISPLAY_M_1_Q	;
-		
-
-DISPLAY_M_Q	LEA R0,ZIP_3		;
-		PUTS			;
 		BRnzp DONE_Q		;
-
-DISPLAY_M_1_Q	LEA R0,ZIP_4		;
-		PUTS			;
-		BRnzp DONE_Q		;		
-
-;------------------------------------------------------------------------
+		
 ;---------changing (col-1)-----------------------------------------------
-;--------------------------------------------------------------------------		
-
-DONE_Q		AND R1,R1,#0		;we start decrementing column from here
+DONE_Q	AND R1,R1,#0		;we start decrementing column from here
 		AND R2,R2,#0
 		AND R3,R3,#0
 
@@ -134,151 +108,111 @@ CHANGE_0_M_R	LD R1,val_zero		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-3		;		
-		ST R1,ZIP_5		;
-		BRnzp DISPLAY_M_R	;
+		BRnzp DONE_R	;
 
 CHANGE_1_M_R	LD R1,val_one		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-15		;
 		ADD R1,R1,#-3		;		
-		ST R1,ZIP_6		;		
-		BRnzp DISPLAY_M_1_R	;
-		
-
-DISPLAY_M_R	LEA R0,ZIP_5		;
-		PUTS			;
 		BRnzp DONE_R		;
-
-DISPLAY_M_1_R	LEA R0,ZIP_6		;
-		PUTS			;
-		BRnzp DONE_R		;		
 		
-;------------------------------------------------------------------------------------
 ;---------changing (row-1)-----------------------------------------------------------
 
 ;here we will have to change the formula we initially loaded into R1
 
 DONE_R		AND R1,R1,#0
-		AND R2,R2,#0
-		AND R3,R3,#0
+			AND R2,R2,#0
+			AND R3,R3,#0
 
-
-		LD R1,INITIAL		;load R1 with GAMEBOARD
-		ADD R3,R5,#-2		;R0W-2
-
-		ADD R2,R6,#0		;loop to get (row-2)*size
+			LD R1,INITIAL		;load R1 with GAMEBOARD
+			ADD R3,R5,#-2		;R0W-2
+			ADD R2,R6,#0		;loop to get (row-2)*size
 
 DO_ROW_K	ADD R3,R3,#0		;		
-		ADD R2,R2,#-1		;
-		BRp DO_ROW_K		;loop ends
+			ADD R2,R2,#-1		;
+			BRp DO_ROW_K		;loop ends
+			ADD R1,R3,#0
 		
-		ADD R1,R3,#0
+			AND R2,R2,#0		;	
+			ADD R2,R4,#-1		;gets column-1
 		
-		AND R2,R2,#0		;	
-		ADD R2,R4,#-1		;gets column-1
-		
-		ADD R1,R2,#0		;R1 now has (row-2)*size+(column-1)+GAMEBOARD
+			ADD R1,R2,#0		;R1 now has (row-2)*size+(column-1)+GAMEBOARD
 
-		AND R2,R2,#0		;clear registers
-		AND R3,R3,#0		;clear registers
+			AND R2,R2,#0		;clear registers
+			AND R3,R3,#0		;clear registers
 
-		ADD R2,R2,#-1		; 
-		ADD R3,R1,R2		;	
+			ADD R2,R2,#-1		; 
+			ADD R3,R1,R2		;	
 		
-		BRzp CHANGE_0_M_J	;
-		BRn CHANGE_1_M_K	;
+			BRzp CHANGE_0_M_J	;
+			BRn CHANGE_1_M_K	;
 
 CHANGE_0_M_J	LD R1,val_zero		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-3		;		
-		ST R1,ZIP_7		;
-		BRnzp DISPLAY_M_J	;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-3		;		
+			BRnzp DONE_J		;
 
 CHANGE_1_M_K	LD R1,val_one		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-3		;		
-		ST R1,ZIP_8		;		
-		BRnzp DISPLAY_M_1_J	;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-15		;
+			ADD R1,R1,#-3		;		
+			BRnzp DONE_J		;
 		
-
-DISPLAY_M_J	LEA R0,ZIP_7		;
-		PUTS			;
-		BRnzp DONE_J		;
-
-DISPLAY_M_1_J	LEA R0,ZIP_8		;
-		PUTS			;
-		BRnzp DONE_J		;		
-;-------------------------------------------------------------------------------------------------
-
 ;---------changing (row+1)-----------------------------------------------------------
 ;here we will have to change the formula we initially loaded into R1
+
 DONE_J		AND R1,R1,#0
-		AND R2,R2,#0
-		AND R3,R3,#0
+			AND R2,R2,#0
+			AND R3,R3,#0
 
+			LD R1,INITIAL		;load R1 with GAMEBOARD
+			ADD R3,R5,#0		;R0W
 
-		LD R1,INITIAL		;load R1 with GAMEBOARD
-		ADD R3,R5,#0		;R0W
+			ADD R2,R6,#0		;loop to get (row)*size
 
-		ADD R2,R6,#0		;loop to get (row)*size
-
-DO_ROW_I	ADD R3,R3,#0		;		
-		ADD R2,R2,#-1		;
-		BRp DO_ROW_I		;loop ends
+DO_ROW_I		ADD R3,R3,#0		;		
+				ADD R2,R2,#-1		;
+				BRp DO_ROW_I		;loop ends
+			
+				ADD R1,R3,#0
+			
+				AND R2,R2,#0		;	
+				ADD R2,R4,#-1		;gets column-1
 		
-		ADD R1,R3,#0
-		
-		AND R2,R2,#0		;	
-		ADD R2,R4,#-1		;gets column-1
-		
-		ADD R1,R2,#0		;R1 now has (row)*size+(column-1)+GAMEBOARD
+				ADD R1,R2,#0		;R1 now has (row)*size+(column-1)+GAMEBOARD
 
-		ADD R1,R1,#-15
-		ADD R1,R1,#-15
-		ADD R1,R1,#-15
-		ADD R1,R1,#-3		;now R1 has the decimal value in it.
+				ADD R1,R1,#-15
+				ADD R1,R1,#-15
+				ADD R1,R1,#-15
+				ADD R1,R1,#-3		;now R1 has the decimal value in it.
 		
-		AND R2,R2,#0		;clear registers
-		AND R3,R3,#0		;clear registers
+				AND R2,R2,#0		;clear registers
+				AND R3,R3,#0		;clear registers
 
-		ADD R2,R2,#-1		; 
-		ADD R3,R1,R2		;	
-		BRzp CHANGE_0_M_Z	;
-		BRn CHANGE_1_M_Z	;
+				ADD R2,R2,#-1		; 
+				ADD R3,R1,R2		;	
+				BRzp CHANGE_0_M_Z	;
+				BRn CHANGE_1_M_Z	;
 
 CHANGE_0_M_Z	LD R1,val_zero		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-3		;		
-		ST R1,ZIP_9		;
-		BRnzp DISPLAY_M_Z	;
+				ADD R1,R1,#-15		;
+				ADD R1,R1,#-15		;
+				ADD R1,R1,#-15		;
+				ADD R1,R1,#-3		;		
+				BRnzp DONE_Z		;
 
-CHANGE_1_M_Z	LD R1,val_one		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-15		;
-		ADD R1,R1,#-3		;		
-		ST R1,ZIP_10		;		
-		BRnzp DISPLAY_M_1_Z	;
+CHANGE_1_M_Z	LD R1,val_one	;
+				ADD R1,R1,#-15		;
+				ADD R1,R1,#-15		;
+				ADD R1,R1,#-15		;
+				ADD R1,R1,#-3		;		
+				BRnzp DONE_Z		;
 		
-
-DISPLAY_M_Z	LEA R0,ZIP_9		;
-		PUTS			;
-		BRnzp DONE_Z		;
-
-DISPLAY_M_1_Z	LEA R0,ZIP_10		;
-		PUTS			;
-		BRnzp DONE_Z		;		
-;-------------------------------------------------------------------------------------------------
-
-;-------------------------------------------------------------------------------------------------
-DONE_Z		RET
+DONE_Z			RET
 ;-------------------------------------------------------------------------------------------------
 
 val_zero	.FILL x0030
@@ -298,5 +232,6 @@ ZIP_7		.BLKW 1
 ZIP_8		.BLKW 1
 ZIP_9		.BLKW 1
 ZIP_10		.BLKW 1
+FINAL		.BLKW 1
 .END
 
