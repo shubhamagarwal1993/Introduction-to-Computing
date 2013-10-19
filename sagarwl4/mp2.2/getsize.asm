@@ -5,7 +5,6 @@
 ;SAVE ALL THE REGISTERS  
 		ST R0,SAVE_0		;
 		ST R1,SAVE_1		;
-		ST R6,SAVE_6		;
 		ST R7,SAVE_7		;
 
 
@@ -57,7 +56,6 @@ FINAL		ADD R1,R1,#9		;input number
 ;LOAD ALL THE REGISTERS TO THEIR INITIAL VALUE SO THAT NO VALUE HAS CHANGED AFTER THIS SUBROUTINE
 		LD R0,SAVE_0		;load from x3150
 		LD R1,SAVE_1		;load from x3151
-		LD R6,SAVE_6		;load from x3152
 		LD R7,SAVE_7		;load from x3153
 		RET
 ASKSIZE		.STRINGZ "\nPlease enter the size of your board[2..9]:\n" ; Words displayed to ask size
