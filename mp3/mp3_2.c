@@ -21,3 +21,18 @@ int main() {
     return 0;
 
 }
+
+/*del_x = (b-a)/N;     
+    	printf("del_x = %f \n", del_x);
+*/
+/*using a loop to calculate f(x) for left edge of rectangles*/
+/*	for(float i = A; i<N; i++)
+	{
+		sum = sum + sum;
+		sum = (((A*i*i)+(B*i)+C)*del_x);
+		i = i + del_x;
+		 	
+	}
+	
+	printf("the Riemann Sum is %f \n", sum);
+*/
