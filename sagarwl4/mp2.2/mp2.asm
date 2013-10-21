@@ -19,13 +19,11 @@ REPEAT	LD R1,GETINPUT
 
 		LD R1,CHECKWIN
 		JSRR R1
-		ADD R6,R6,#0
+		ADD R0,R0,#0
 		BRnp REPEAT
 		LEA R0,WIN
+		PUTS
 		
-		LD R1,GAMEBOARD
-		JSRR R1
-
 		HALT
 
 WIN .STRINGZ "\nCongratulations, you win!\n"	; The words you need to display if the player wins. 
