@@ -1,9 +1,49 @@
 Problem #2 Activation Record:
+local variables:
+result
+summation
+result
+sum_y
+sum_x
 
+main's frame pointer
+return address for main
+return value to main
 
+parameters
+x1
+y1
+x2
+y2
 
-
-
-
-
+;----------------------------------
 Problem #3 Run-time Stack:
+ACTIVATION RECORD 
+local variables:
+fact_result
+factor
+
+main's frame pointer
+return address to main
+return value to main
+
+fact_square_result
+main's frame pointer
+return address to main
+return value to main
+
+
+RUN-TIME STACK
+| ------------------------------------------------------------
+| 1.    |2.	     |	3.	     |	4.	    |	5.   |
+| ------|-------------|---------------|--------------|-------|
+|       |	     |	factorial     |              |       |
+|       |fact_squared |	fact_squared  |	fact_squared |       |
+| main  |main	     |	main	     |	main	    |	main |
+| ------------------------------------------------------------
+
+1.Run-time stack when program execution starts
+2.when fact_squared executes
+3.when factorial executes(fact_squared calls factorial)
+4.when factorial completes
+5.when fact_squared completes 
