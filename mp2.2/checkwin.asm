@@ -30,28 +30,27 @@
 		
 LOOP2		ADD R3,R6,#0		;R3 now has the square of R6(size^2)
 			ADD R5,R5,#-1		;		
-			BRp LOOP2		;R5 is a loop counter		
-					;
+			BRp LOOP2			;R5 is a loop counter		
+					
 ;---------------------------------------------------------------------------------------------
 			AND R5,R5,#0		;clear - now we have R1,R2,R4,R5,R7 FREE
 		
 			LD R1,GAMEBOARD		;the first memory location is stored in R1
-			LD R2,val_one		;
-			NOT R2,R2		;
-			ADD R2,R2,#1		;R2 contains -1
+			ADD R2,R2,#-1		;load R2 with -1
+			
 		
-		
-LOOP1		ADD R3,R1,R2		;we see if the result is -ve or 0
-			BRn NEXT		;if it is negative, decrement the counter		
-			BRzp STOP		;if it is 1, we go to halt straight
+LOOP1		LDI R4,GAMEBOARD	;load the value stored in x3600
+			ADD R3,R4,R2		;we see if the result is -ve or 0
+			BRn NEXT			;if it is negative, decrement the counter		
+			BRzp STOP			;if it is 1, we go to halt straight
 		
 NEXT		ADD R1,R1,#1		;checks the next value
 			ADD R3,R3,#-1		;acts as the check of the last value	
-			BRp LOOP1		;checks the next value		
-;if all are checked, we load R6 with 0 and halt
+			BRp LOOP1			;checks the next value		
+;if all are checked, we load R0 with 0 and halt
 
 ;--------------------------------------------------------------------------------------------
-			AND R6,R6,#0		;load R6 with 0 when all the values are 0	
+			AND R0,R0,#0		;load R0 with 0 when all the values are 0	
 ;-----------loading back all the values------------------------------------------------------
 			LD R1,SAVE_1
 			LD R2,SAVE_2
