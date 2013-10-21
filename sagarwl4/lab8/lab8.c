@@ -2,7 +2,7 @@
 #include <math.h>
 
 /* function declaration goes here */
-int euc_dist(int x1, int y1, int x2, int y2);
+float euc_dist(float x1, float y1, float x2, float y2);
 
 int main()
 {
@@ -25,14 +25,17 @@ int main()
     return 0;
 }
 
-/* function definition goes here */int euc_dist(int x1, int y1, int x2, int y2)
+/* function definition goes here */
+float euc_dist(float x1, float y1, float x2, float y2)
 {
-int sum_x;
-int sum_y;
-int result; 
+float sum_x;
+float sum_y;
+float result; 
+float summation;
 sum_x = (x1-x2)*(x1-x2);
 sum_y = (y1-y2)*(y1-y2);
-result = sqrt(sum_x + sum_y);
+summation = sum_x+sum_y;
+printf("summation = %f \n", summation);
+result = sqrtf (summation);
 return result;
 }
-
