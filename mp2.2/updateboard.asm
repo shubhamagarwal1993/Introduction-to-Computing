@@ -54,12 +54,10 @@ DO_ROW			ADD R3,R3,R7		;
 			BRn CHANGE_1_M		;
 
 CHANGE_0_M		LD R1,val_zero		;
-			ADD R1,R1,#-1		;
 			STI R1,GAME_SAVE	;		
 			BRnzp DONE 		;
 
 CHANGE_1_M		LD R1,val_one		;
-			ADD R1,R1,#1		;
 			STI R1,GAME_SAVE	;			
 			BRnzp DONE		;
 
@@ -89,12 +87,10 @@ DONE			AND R1,R1,#0		;
 			BRn CHANGE_1_M_Q	;
 
 CHANGE_0_M_Q		LD R1,val_zero		;
-			ADD R1,R1,#-1		;
 			STI R1,GAME_SAVE_1	;		
 			BRnzp DONE_Q		;
 
 CHANGE_1_M_Q		LD R1,val_one		;
-			ADD R1,R1,#1		;
 			STI R1,GAME_SAVE_1	;				
 			BRnzp DONE_Q		;
 ;---------changing (col-1)-----------------------------------------------
@@ -121,12 +117,10 @@ DONE_Q			AND R7,R7,#0		;
 			BRn CHANGE_1_M_R	;
 
 CHANGE_0_M_R		LD R1,val_zero		;
-			ADD R1,R1,#-1		;
 			STI R1,GAME_SAVE_2	;	
 			BRnzp DONE_R		;
 	
 CHANGE_1_M_R		LD R1,val_one		;
-			ADD R1,R1,#1		;
 			STI R1,GAME_SAVE_2	;		
 			BRnzp DONE_R		;
 ;---------changing (row-1)-----------------------------------------------------------
@@ -174,20 +168,18 @@ DO_ROW_K		ADD R3,R3,R7		;
 			BRn CHANGE_1_M_K	;
 
 CHANGE_0_M_J		LD R1,val_zero		;
-			ADD R1,R1,#-1		;
 			STI R1,GAME_SAVE_3	;
 			BRnzp DONE_J		;
 
 CHANGE_1_M_K		LD R1,val_one		;
-			ADD R1,R1,#1		;
 			STI R1,GAME_SAVE_3	;
 			BRnzp DONE_J		;
 		
 ;---------changing (row+1)-----------------------------------------------------------
 DONE_J			AND R7,R7,#0		;
 			NOT R7,R5		;
-			ADD R7,R7,#1		;
-			ADD R7,R7,R6
+			ADD R7,R7,#1		;			
+			ADD R7,R7,R6		;
 			BRnz DONE_Z		;if it is the last row, skip this step 
 ;------------------------------------------------------------------------------------
 ;here we will have to change the formula we initially loaded into R1
@@ -235,12 +227,10 @@ DO_ROW_I		ADD R3,R3,#0		;
 			BRn CHANGE_1_M_Z	;
 
 CHANGE_0_M_Z		LD R1,val_zero		;
-			ADD R1,R1,#-1		;
 			STI R1,GAME_SAVE_4	;
 			BRnzp DONE_Z		;
 
 CHANGE_1_M_Z		LD R1,val_one		;
-			ADD R1,R1,#1		;
 			STI R1,GAME_SAVE_4	;
 			BRnzp DONE_Z		;
 		
