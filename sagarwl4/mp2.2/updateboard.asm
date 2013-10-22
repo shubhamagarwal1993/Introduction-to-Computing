@@ -137,33 +137,33 @@ DONE_R			AND R7,R7,#0		;
 			
 			LD R1,GAME_SAVE 	;load R1 with location of col,row
 			NOT R7,R6			
-			ADD R7,R7,#1
+			ADD R7,R7,#1		;-ve of size 
 			ADD R1,R1,R7		;now R1 has GAMEBOARD+(row-2)*size+(column-1)			
 						
 			ST R1,GAME_SAVE_3	;GAMESAVE HAS THE MEMORY LOCATION OF THE ORIGINAL VALUE
 			LDI R1,GAME_SAVE_3
-			ADD R1,R1,#-15		;
-			ADD R1,R1,#-15		;
-			ADD R1,R1,#-15		;
-			ADD R1,R1,#-3		;we add -48 to R1 to get 0 or 1		
-			ADD R2,R6,#0		;loop to get (row-2)*size
-
-DO_ROW_K		ADD R3,R3,R7		;		
-			ADD R2,R2,#-1		;
-			BRp DO_ROW_K		;loop ends
-			ADD R1,R1,R3
-		
-			AND R2,R2,#0		;	
-			ADD R2,R4,#-1		;gets column-1
-		
-			ADD R1,R2,#0		;R1 now has (row-2)*size+(column-1)+GAMEBOARD
-
-			AND R2,R2,#0		;clear registers
-			AND R3,R3,#0		;clear registers
-
-			ADD R2,R2,#-1		; 
-			ADD R3,R1,R2		;	
-		
+			ADD R1,R1,#-16		;
+			ADD R1,R1,#-16		;
+			ADD R1,R1,#-16		;we add -48 to R1 to get 0 or 1		
+			
+;			ADD R2,R6,#0		;loop to get (row-2)*size
+;
+;DO_ROW_K		ADD R3,R3,R7		;		
+;			ADD R2,R2,#-1		;
+;			BRp DO_ROW_K		;loop ends
+;			ADD R1,R1,R3
+;		
+;			AND R2,R2,#0		;	
+;			ADD R2,R4,#-1		;gets column-1
+;		
+;			ADD R1,R1,R2		;R1 now has (row-2)*size+(column-1)+GAMEBOARD
+;			AND R2,R2,#0		;clear registers
+;			AND R3,R3,#0		;clear registers
+;
+			AND R2,R2,#0		;clear
+			AND R3,R3,#0		;clear			
+			ADD R2,R1,#-1		; 
+				
 			BRzp CHANGE_0_M_J	;
 			BRn CHANGE_1_M_K	;
 
@@ -189,40 +189,18 @@ DONE_J			AND R7,R7,#0		;
 			AND R3,R3,#0
 			AND R7,R7,#0
 
-			LD R1,GAME_SAVE		;load R1 with GAMEBOARD
-			ADD R7,R7,R6				
-			ADD R1,R1,R7			
-			
-			ADD R3,R5,#0		;R0W
-			ST R1,GAME_SAVE_4	;GAMESAVE HAS THE MEMORY LOCATION OF THE ORIGINAL VALUE
-			LDI R1,GAME_SAVE_4
-			ADD R1,R1,#-15		;
-			ADD R1,R1,#-15		;
-			ADD R1,R1,#-15		;
-			ADD R1,R1,#-3		;we add -48 to R1 to get 0 or 1		
-			ADD R2,R6,#0		;loop to get (row)*size
+			LD R1,GAME_SAVE		;
+			ADD R1,R1,R6		;
+			ST R1,GAME_SAVE_4	;
+			LDI R1,GAME_SAVE_4	;		
+			ADD R1,R1,#-16		;
+			ADD R1,R1,#-16		;
+			ADD R1,R1,#-16		;now R1 has the decimal value in it.
 
-DO_ROW_I		ADD R3,R3,#0		;		
-			ADD R2,R2,#-1		;
-			BRp DO_ROW_I		;loop ends
-			
-			ADD R1,R3,#0
-			
-			AND R2,R2,#0		;	
-			ADD R2,R4,#-1		;gets column-1
-		
-			ADD R1,R2,#0		;R1 now has (row)*size+(column-1)+GAMEBOARD
-
-			ADD R1,R1,#-15
-			ADD R1,R1,#-15
-			ADD R1,R1,#-15
-			ADD R1,R1,#-3		;now R1 has the decimal value in it.
-		
 			AND R2,R2,#0		;clear registers
 			AND R3,R3,#0		;clear registers
 
-			ADD R2,R2,#-1		; 
-			ADD R3,R1,R2		;	
+			ADD R2,R1,#-1
 			BRzp CHANGE_0_M_Z	;
 			BRn CHANGE_1_M_Z	;
 
