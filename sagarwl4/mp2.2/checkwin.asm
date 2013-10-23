@@ -1,5 +1,8 @@
 ; This file should be submitted in mp2.2
 ; Comments
+;this checks if all the numbers are 0 or not
+;if all are 0, then it prints win condition 
+;if not, then it goes back to ask user input again
 ;PURPOSE OF REGISTERS
 ;R0 - checks if all the pieces are 0 or not (output)
 ;R1 - spare

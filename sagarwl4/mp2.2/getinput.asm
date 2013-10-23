@@ -1,7 +1,8 @@
 ; This file should be submitted in both mp2.1 and mp2.2
 ; Comments
 .ORIG x3300
-
+;this will ask the row and column number from the user
+;R4 and R5 will maintain the row column number and row number
 ;SAVE ALL THE REGISTERS since 
 		ST R0,SAVE_0		;
 		ST R1,SAVE_1		;
@@ -18,6 +19,7 @@
 ;R0 - does all the input and output
 ;R1 - is a copy of R0 and all calculation is done on R1
 ;R3 - has the -ve of R1, used to determine if the row number entered is right or wrong
+;R4 - stores the final value of the column number
 ;R5 - stores the final value of the row number
 
 

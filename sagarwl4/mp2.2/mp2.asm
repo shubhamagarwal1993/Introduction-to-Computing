@@ -1,5 +1,7 @@
 ; This file should be submitted in mp2.2
 ; Comments
+;this assmbles all the files together  
+;it acts as the main function and loads all the subroutines
 .ORIG x3000
 
 		LD R1,GETSIZE

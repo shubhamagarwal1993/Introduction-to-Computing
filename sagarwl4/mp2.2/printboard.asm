@@ -1,7 +1,8 @@
 ; This file should be submitted in both mp2.1 and mp2.2
 ; Comments
 .ORIG x3200
-
+;this will print the board game with all 1s
+;the input will store the input and print the board of size, 
 ;SAVE ALL THE REGISTERS since we dont want the value of registers to be lost when this subroutine works 
 			ST R0,SAVE_0		;
 			ST R1,SAVE_1		;
@@ -36,8 +37,8 @@
 		
 		
 
-LINE_AGAIN	ADD R2,R2,R6		;put the input number in R2
-LOOP1		ADD R1,R1,#1
+LINE_AGAIN		ADD R2,R2,R6		;put the input number in R2
+LOOP1			ADD R1,R1,#1
 			LDR R0,R1,#0
 			OUT
 		
