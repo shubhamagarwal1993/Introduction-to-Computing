@@ -62,13 +62,13 @@ CHANGE_1_M		LD R1,val_one		;
 			BRnzp DONE		;
 
 ;---------changing (col+1)-----------------------------------------------
-			AND R7,R7,#0		;
+DONE			AND R7,R7,#0		;
 			NOT R7,R4		;
 			ADD R7,R7,#1		;
 			ADD R7,R7,R6
-			BRnz DONE_Q		;if it is the last column, skip this step 				 
+			BRz DONE_Q		;if it is the last column, skip this step 				 
 ;------------------------------------------------------------------------
-DONE			AND R1,R1,#0		;		
+			AND R1,R1,#0		;		
 			AND R2,R2,#0		;
 			AND R3,R3,#0		;
 		
@@ -96,7 +96,7 @@ CHANGE_1_M_Q		LD R1,val_one		;
 ;---------changing (col-1)-----------------------------------------------
 DONE_Q			AND R7,R7,#0		;
 			ADD R7,R4,#-1
-			BRnz DONE_R		;if it is the first column, skip this step
+			BRz DONE_R		;if it is the first column, skip this step
 ;------------------------------------------------------------------------
 			AND R1,R1,#0		;we start decrementing column from here
 			AND R2,R2,#0
@@ -126,7 +126,7 @@ CHANGE_1_M_R		LD R1,val_one		;
 ;---------changing (row-1)-----------------------------------------------------------
 DONE_R			AND R7,R7,#0		;
 			ADD R7,R5,#-1
-			BRnz DONE_J		;if it is the first row, skip this step
+			BRz DONE_J		;if it is the first row, skip this step
 ;------------------------------------------------------------------------------------
 ;here we will have to change the formula we initially loaded into R1
 
@@ -166,7 +166,7 @@ DONE_J			AND R7,R7,#0		;
 			NOT R7,R5		;
 			ADD R7,R7,#1		;			
 			ADD R7,R7,R6		;
-			BRnz DONE_Z		;if it is the last row, skip this step 
+			BRz DONE_Z		;if it is the last row, skip this step 
 ;------------------------------------------------------------------------------------
 ;here we will have to change the formula we initially loaded into R1
 

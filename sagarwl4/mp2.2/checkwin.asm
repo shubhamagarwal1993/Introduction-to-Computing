@@ -20,36 +20,40 @@
 
 ;-----------------CLEAR ALL REGISTERS------------------------------
 			AND R0,R0,#0		;clear	
-			ADD R1,R1,#1		;we add 1 to R0, assuming the board is not flipped		
 			AND R1,R1,#0		;clear
 			AND R2,R2,#0		;clear
 			AND R3,R3,#0		;clear
 			AND R4,R4,#0		;clear
 			AND R5,R5,#0		;clear
-			AND R7,R7,#0		;clear	 
+				 
 ;----------------making a counter-------------------------------------------------------------
 			ADD R5,R6,#0		;R5 now has the size
 		
 LOOP2			ADD R3,R3,R6		;R3 now has the square of R6(size^2)
-			ADD R3,R3,#-1		;we not have (size^2)-1 because we check x3600 outside the loop
-			ADD R5,R5,#-1		;		
+                        ADD R5,R5,#-1		;		
 			BRp LOOP2		;R5 is a loop counter		
-					
+			ADD R3,R3,#-1		;we not have (size^2)-1 because we check x3600 outside the loop		
 ;---------------------------------------------------------------------------------------------
-			AND R5,R5,#0		;clear - now we have R1,R2,R4,R5,R7 FREE
+			AND R5,R5,#0		;clear - now we have R1,R2,R4,R5 FREE
 		
 			LD R1,GAMEBOARD		;the first memory location is stored in R1
 			ADD R2,R2,#-1		;load R2 with -1
 			
 		
 			LDI R4,GAMEBOARD	;load the value stored in x3600
-			ADD R3,R4,R2		;we see if the result is -ve or 0
+			ADD R4,R4,#-16	        ;
+			ADD R4,R4,#-16		;
+			ADD R4,R4,#-16		;
+			ADD R5,R4,R2		;we see if the result is -ve or 0
 			BRzp STOP		;if it is 1, we go to halt straight
 
 LOOP1			ADD R1,R1,#1		;R1 points to the next value
 			ST R1,STORE		;store the memory location of new R1			
 			AND R4,R4,#0		;clear R4
-			LDI R4,STORE		;load value in memory of R1	
+			LDI R4,STORE		;load value in memory of R1
+			ADD R4,R4,#-16	        ;
+			ADD R4,R4,#-16		;
+			ADD R4,R4,#-16		;	
 			BRp STOP		;we check the value in R4	
 			
 			ADD R3,R3,#-1		;decrement counter			
@@ -60,15 +64,16 @@ LOOP1			ADD R1,R1,#1		;R1 points to the next value
 			AND R0,R0,#0		;load R0 with 0 when all the values are 0	
 			BRnzp STOP1		;we load R0 with 0 and go to RET			
 ;-----------loading back all the values------------------------------------------------------
-			LD R1,SAVE_1		;
+STOP			ADD R0,R0,#1			;
+STOP1			LD R1,SAVE_1		;
 			LD R2,SAVE_2		;
 			LD R3,SAVE_3		;
 			LD R4,SAVE_4		;
 			LD R5,SAVE_5		;
 			LD R7,SAVE_7		;
 ;---------------------------------------------------------------------------------------------
-STOP		ADD R0,R0,#1			;				
-STOP1		RET
+				
+		RET
 ;------------------------------------------------------------------------------------
 GAMEBOARD	.FILL x3600
 val_one		.FILL x0031
