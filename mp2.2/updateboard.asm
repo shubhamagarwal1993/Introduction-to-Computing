@@ -1,6 +1,7 @@
 ; This file should be submitted in mp2.2
 ; Comments
-
+;this is the most imp function and flips the specified numbers.
+;it takes care of edge cases and makes changes to the board game
 ;PURPOSE OF REGISTERS
 ;R1 - load it with gameboard+(row-1)*size+(column-1)
 ;R2 - act as a counter

@@ -1,3 +1,7 @@
+;SHUBHAM AGARWAL - sagarwl4
+;22/10/2013
+;This function is simply asking the size of the board from the user and storing it in R6 whoch we maintain for size.
+;We check for the size of the board and limit it from 2 to 9
 ; This file should be submitted in both mp2.1 and mp2.2
 ; Comments
 .ORIG x3100
