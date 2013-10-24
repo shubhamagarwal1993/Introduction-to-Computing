@@ -1,0 +1,26 @@
+1. What is output from ccons? What is the initial value in the pointer? Will
+this always be the case? *Hint think about what is stored in a variable that
+is not initialized.
+
+2. What does the * operator do at this point in the code? What happened? Why?
+
+3. What is the output when running the following commands?
+
+4. What happens when running the above code? Why? How did you fix the code?
+
+5. What is ipoint incremented by each time the statement ipoint = ipoint + 1
+is run when the array is of type double. Why? Notice that the output from the
+array starts with zero. Why?
+
+6. How does passing the arrays to a function using pointers affect the data as
+the array is being passed to the function? Hint: what happens if the array is
+changed in the function?
+
+7. Why is there a problem with the previous code snippet? Which line gives the
+error? Why?
+
+8. Why is there a problem with that assignment?
+
+9. Why does the third assignment fail?
+
+10. What does code.c do?  How difficult would it be to do something similar in LC-3 assembly?
