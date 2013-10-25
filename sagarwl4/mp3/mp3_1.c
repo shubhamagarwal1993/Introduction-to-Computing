@@ -20,7 +20,7 @@ int main()
 	float average = 0.0f;			/*average sum*/
 
 	printf("\n");	
-	printf("we will find the integration of Ax^2+Bx+C from a to b \n");
+	printf("integration of Ax^2+Bx+C over a<=x<=b with N rectangles!\n");
 	printf("\n");
 	printf("enter startpoint\n");
 	scanf("%f", &a);	
@@ -51,6 +51,7 @@ LOOP2:
 	{
 		goto LOOP2;	
 	}
+	printf("Approximate the integration of a polynomial Ax^2+Bx+C over a<=x<=b with N rectangles!\n");
 	printf("Input A: %f \n", A);
 	printf("Input B: %f \n", B);
 	printf("Input C: %f \n", C);
