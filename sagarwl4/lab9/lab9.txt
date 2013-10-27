@@ -37,7 +37,8 @@ The code was fixed by **********************************************************
 is run when the array is of type double. Why? Notice that the output from the
 array starts with zero. Why?
 ANS:
-
+ipoint is incremented by 8 bytes each time(64 bit long).
+Because of *ipoint = i and the loop first runs and then increments the value of i. Thus, we get 0 initially. 
 =====================================================================================================
 6. How does passing the arrays to a function using pointers affect the data as
 the array is being passed to the function? Hint: what happens if the array is
