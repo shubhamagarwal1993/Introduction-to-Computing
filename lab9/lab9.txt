@@ -1,26 +1,53 @@
 1. What is output from ccons? What is the initial value in the pointer? Will
 this always be the case? *Hint think about what is stored in a variable that
 is not initialized.
+ANS:
+the output from ccons is a value of type int* (interger pointer) and the initial value of the variable ipoint is nil.
+The initial value of the variable ipoint is nil.
+The type will never change but the value can be anything. It can be nil, some previously stored value or even garbage.
+========================================================================================================================
 
 2. What does the * operator do at this point in the code? What happened? Why?
+ANS:
+the * operator tries ton access the object the pointer ipoint points to.
+When we type this in ccons, it shows 'Segmentation fault'.
+This is probably because ipoint dosen't point to anything.
+================================================================================================
 
 3. What is the output when running the following commands?
+ANS:
+(int *) 0x7fad1b6be028] -> this is the address of 'a'
+(int *) 0x7fad1b6be028] -> this is the address of 'a'
+(int) 5] 				-> this contains the value stored in 'a'
+(int) 5] 				-> this contains the value stored in 'a'
+(int) 15] 				-> this adds 10 to the initial value of 'a' and stores it in 'a'
+(int *) 0x7fad1b6be028] -> this is the address of 'a' which does not change
+(int) 15] 				-> this contains the latest value stored in 'a'
+(int) 5] 				-> this computes the value in 'a', subtracts 10 and stores it back in 'a'
+(int) 5] 				-> this contains the latest modified value stored in 'a'
 
+=================================================================================================
 4. What happens when running the above code? Why? How did you fix the code?
-
+ANS:
+When running the above code, we get 100 data addresses all at a separation of 4 memory addresses. following it we have integers 0,1,2,3,4.
+this is because the first loop goes around 100 times and prints out memory addresses as asked by 'ipoint'. It then displays integers as asked form iray[i]. 
+The code was fixed by **********************************************************************
+===================================================================================================
 5. What is ipoint incremented by each time the statement ipoint = ipoint + 1
 is run when the array is of type double. Why? Notice that the output from the
 array starts with zero. Why?
+ANS:
 
+=====================================================================================================
 6. How does passing the arrays to a function using pointers affect the data as
 the array is being passed to the function? Hint: what happens if the array is
 changed in the function?
-
+=====================================================================================================
 7. Why is there a problem with the previous code snippet? Which line gives the
 error? Why?
-
+=======================================================================================================
 8. Why is there a problem with that assignment?
-
+=======================================================================================================
 9. Why does the third assignment fail?
 
 10. What does code.c do?  How difficult would it be to do something similar in LC-3 assembly?

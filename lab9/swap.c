@@ -14,7 +14,7 @@ int main()
    printf("Swapped y: %d\n",y);
 
    /*call swap();*/
-
+	swap(&x,&y);
    printf("After calling swap\n");
    printf("Swapped x: %d\n",x);
    printf("Swapped y: %d\n",y);
@@ -35,5 +35,9 @@ void swap_wrong (int x, int y)
 void swap(int *px, int *py)
 {
    //YOUR CODE GOES HERE
+	int temp;
+	temp = *px;
+	*px = *py;
+	*py = temp;	
 }
 
