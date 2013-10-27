@@ -42,12 +42,20 @@ ANS:
 6. How does passing the arrays to a function using pointers affect the data as
 the array is being passed to the function? Hint: what happens if the array is
 changed in the function?
+ANS:
+When we pass an array to a function using pointer, we are passing the address of the first element. 
+So, the expected parameter is a pointer. 
 =====================================================================================================
 7. Why is there a problem with the previous code snippet? Which line gives the
 error? Why?
+The code has a type mis-match. The line 'pi=&pd' is the line of error. We are comparing a double to an int
 =======================================================================================================
 8. Why is there a problem with that assignment?
-=======================================================================================================
+The problem with the assignment is that we define p5 as a pointer of array size 5 and b is an array of 10.
+if we would have defined (*p10)[10], then it would have worked =======================================================================================================
 9. Why does the third assignment fail?
-
+a=*pa is the line of error because the array is pointing to array b and a is not pointing to anything. 
+========================================================================================================
 10. What does code.c do?  How difficult would it be to do something similar in LC-3 assembly?
+code.c take two matrices and multiplies them. It then adds it to matrix 'c' which is zero initially. So we get the multiplication of matrix 'a' and 'b'.
+It would require lot of loops and will be a little tricky in lc3. There are a lot of places where one can go wrong in LC3
