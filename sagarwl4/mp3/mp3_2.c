@@ -73,7 +73,7 @@ float riemann(float a, float b, int N, float A, float B, float C,char method)
 
 	if (method == 'L')
 	{
-		for (x = a; x < b-del_x; x=x+del_x)
+		for (x = a; x <= b-del_x; x=x+del_x)
 		{ 	
 			sum = sum + (((A*x*x)+(B*x)+(C))*del_x);
 		}			
