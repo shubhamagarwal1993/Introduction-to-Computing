@@ -1,68 +1,52 @@
-/* 
-    Name:	shubham agarwal
-    NetID:	sagarwl4
-    Lab Section:AD9
-*/
-
 #include <stdio.h>
 
-int main()
-{
-	float a;				/*starting point of integration*/
-	float b;				/*endpoint of integration*/
-	float A;				/*coefficient of x^2*/		
-	float B;				/*coeficient of x*/
-	float C;				/*constant*/
-	float N;				/*the number of rectangles*/
-	float left = 0.0f;			/*left method sum*/
-	float right = 0.0f;			/*right method sum*/
-	float middle = 0.0f;			/*middle method sum*/
-	float average = 0.0f;			/*average sum*/
+float polynomial(float A, float B, float C, float x);
 
-	printf("\n");	
-	printf("integration of Ax^2+Bx+C over a<=x<=b with N rectangles!\n");
-	printf("\n");
-	printf("enter startpoint\n");
-	scanf("%f", &a);	
-		
+float riemann(float a, float b, int N, float A, float B, float C,char method);
+
+int main() 
+{
+	float a;					/*starting point of integration*/
+	float b;					/*endpoint of integration*/
+	float A;					/*coefficient of x^2*/		
+	float B;					/*coeficient of x*/
+	float C;					/*constant*/
+	float N;					/*the number of rectangles*/
+	printf("Riemann Sum Calculator:\n");
+	printf("Approximate the integration of a polynomial Ax^2+Bx+C with N rectangles!\n");	
+	printf("Input A: ");
+	scanf("%f", &A);
+	printf("Input B: ");
+	scanf("%f", &B);
+	printf("Input C: ");
+	scanf("%f", &C);
+	printf("Input a: ");
+	scanf("%f", &a);
+			
 LOOP1:
-	printf("enter endpoint\n");
-	scanf("%f", &b);
-	
+	printf("Input b: ");
+	scanf("%f", &b);	
 	if (a>b)
 	{
+		printf("	Please ensure b>a\n");
 		goto LOOP1;		
 	}
-
-	printf("enter value for A\n");
-	scanf("%f", &A);
-
-	printf("enter value for B\n");
-	scanf("%f", &B);
-
-	printf("enter value for C\n");
-	scanf("%f", &C);
-
-LOOP2:	
-	printf("enter the number of rectangles you want\n");
-	scanf("%f", &N);
 	
+LOOP2:	
+	printf("Input N: ");
+	scanf("%f", &N);
 	if (N<=0)
 	{
+		printf("	Please ensure N>0\n");
 		goto LOOP2;	
 	}
-	printf("Approximate the integration of a polynomial Ax^2+Bx+C over a<=x<=b with N rectangles!\n");
-	printf("Input A: %f \n", A);
-	printf("Input B: %f \n", B);
-	printf("Input C: %f \n", C);
-	printf("Input a: %f \n", a);
-	printf("Input b: %f \n", b);	
-	printf("Results: \n");
-	printf("%fx^2 + %fx + %f \n",A,B,C);
-	printf("left method sum = %f \n", left);
-	printf("right method sum = %f \n", right);
-	printf("middle method sum = %f \n", middle);
-	printf("average sum = %f \n", average);
-return 0;
-
+	
+	printf("Results:\n");
+	printf("left method sum = %f \n", riemann(a,b,N,A,B,C,'L'));
+	printf("right method sum = %f \n", riemann(a,b,N,A,B,C,'R'));
+	printf("middle method sum = %f \n", riemann(a,b,N,A,B,C,'M'));
+    	printf("average sum = %f \n", (riemann(a,b,N,A,B,C,'L')+riemann(a,b,N,A,B,C,'R')+riemann(a,b,N,A,B,C,'M'))/3 );
+	printf("\n");
+    return 0;
 }
+
