@@ -1,7 +1,7 @@
 /*
     Name:		shubham agarwal
     NetID:		sagarwl4
-    Lab Section:	
+    Lab Section:	AD9
 */
 
 #include <stdio.h>
@@ -20,7 +20,7 @@ int main()
 	float N;					/*the number of rectangles*/
 	printf("Riemann Sum Calculator:\n");
 	printf("Approximate the integration of a polynomial Ax^2+Bx+C with N rectangles!\n");	
-	printf("Input A: ");
+	printf("Input A: ");				/*taking inputs*/
 	scanf("%f", &A);
 	printf("Input B: ");
 	scanf("%f", &B);
@@ -29,7 +29,7 @@ int main()
 	printf("Input a: ");
 	scanf("%f", &a);
 			
-LOOP1:
+LOOP1:							/*checking for b>a or not */				
 	printf("Input b: ");
 	scanf("%f", &b);	
 	if (a>b)
@@ -38,7 +38,7 @@ LOOP1:
 		goto LOOP1;		
 	}
 	
-LOOP2:	
+LOOP2:							/*checking if the no. of rect >0*/
 	printf("Input N: ");
 	scanf("%f", &N);
 	if (N<=0)
@@ -47,7 +47,7 @@ LOOP2:
 		goto LOOP2;	
 	}
 	
-	printf("Results:\n");
+	printf("Results:\n");						/*outputting answers*/
 	printf("left method sum = %f \n", riemann(a,b,N,A,B,C,'L'));
 	printf("right method sum = %f \n", riemann(a,b,N,A,B,C,'R'));
 	printf("middle method sum = %f \n", riemann(a,b,N,A,B,C,'M'));
@@ -71,7 +71,7 @@ float riemann(float a, float b, int N, float A, float B, float C,char method)
 	del_x = (b-a)/N;
 	float x;
 
-	if (method == 'L')
+	if (method == 'L')				/*left method sum*/
 	{
 		for (x = a; x <= b-del_x; x=x+del_x)
 		{ 	
@@ -80,7 +80,7 @@ float riemann(float a, float b, int N, float A, float B, float C,char method)
 		return sum;	
 	}
 
-	if (method == 'R')
+	if (method == 'R')				/*right method sum*/
 	{
 		for (x = a+del_x; x <= b; x=x+del_x)
 		{ 	
@@ -90,7 +90,7 @@ float riemann(float a, float b, int N, float A, float B, float C,char method)
 	
 	}
 	
-	if (method == 'M')
+	if (method == 'M')				/*middle method sum*/	
 	{
 		for (x = a+(del_x/2); x < b; x=x+del_x)
 		{ 	
