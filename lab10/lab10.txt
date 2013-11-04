@@ -15,12 +15,20 @@ vector s;				//'s' is name of type vector
 ;-------------------------------------------------------------------
 Operators:
 What is the type of "a" when it's used in an expression?
->>
+>>a is an array of 5 pointers to char.
+'a' is of type double pointer. 
  
 ;-------------------------------------------------------------------
 Operator []:
 What is the result of all six expressions? Why?
->> 
+>> (int) 4
+>> (int) 4
+>> (int) 4
+>> (int) 4
+>> (int) 4
+>> (int) 4
+so the variable array has 4 elements. base_pointer is a pointer to the variable array and thus points to the same location as array.
+Thus, we get the same answer everytime.
 ;-------------------------------------------------------------------
 Operator *:
 You have a variable with type "int" that you want to pass to a function, but
