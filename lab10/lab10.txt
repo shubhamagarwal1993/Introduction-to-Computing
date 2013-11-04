@@ -1,7 +1,7 @@
 Building complex types:
 Provide C code to declare a variable "s" which is an array of 4 structures
 with members "int" and "double."
->> 
+>> struct { int a[2]; double b[2]; } s;
 
 Custom type names:
 Declare the same variable "s" (an array of 4 structures with members "int"
