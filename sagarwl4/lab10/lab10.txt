@@ -2,38 +2,44 @@ Building complex types:
 Provide C code to declare a variable "s" which is an array of 4 structures
 with members "int" and "double."
 >> struct { int a[2]; double b[2]; } s;
-
+;--------------------------------------------------------------
 Custom type names:
-Declare the same variable "s" (an array of 4 structures with members "int"
-and "double"), this time using a custom type to identify the structure.
->> 
-
+Declare the same variable "s" (an array of 4 structures with members "int" and "double"), this time using a custom type to identify the structure.
+>> typedef struct
+{	
+	int a[2] ;
+	double b[2] ;
+}vector;				//vector is a type name denoting an array
+						//of of 4 struct with mem int & double.
+vector s;				//'s' is name of type vector 	
+;-------------------------------------------------------------------
 Operators:
 What is the type of "a" when it's used in an expression?
->> 
-
+>>
+ 
+;-------------------------------------------------------------------
 Operator []:
 What is the result of all six expressions? Why?
 >> 
-
+;-------------------------------------------------------------------
 Operator *:
 You have a variable with type "int" that you want to pass to a function, but
 the parameter has type "int *". How do you pass it?
 >> 
-
+;-------------------------------------------------------------------
 What if the parameter has type "int **"?
 >> 
-
+;-------------------------------------------------------------------
 Operator ->:
 Suppose you have a variable called "vector_array" which is an array of this
 "vector" type. Write a C expression to access the y component of element 4 of
 the array.
 >> 
-
+;-------------------------------------------------------------------
 Operator &:
 Explain why "&array[3]" and "array + 3" are equivalent.
 >> 
-
+;-------------------------------------------------------------------
 operator sizeof:
 Another use of the sizeof operator is to compute the number of elements in
 an array: sizeof array / sizeof array[0] . Explain why this trick works.
