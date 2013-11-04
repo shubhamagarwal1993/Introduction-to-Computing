@@ -33,10 +33,10 @@ Thus, we get the same answer everytime.
 Operator *:
 You have a variable with type "int" that you want to pass to a function, but
 the parameter has type "int *". How do you pass it?
->> 
+>> We would use the '&' operator once to pass the memory location of 'int' to 'int *'
 ;-------------------------------------------------------------------
 What if the parameter has type "int **"?
->> 
+>> we would still use the '&' once to pass the memory location of 'int' to 'int *' and the memory of 'int *' would be passed to 'int **'.
 ;-------------------------------------------------------------------
 Operator ->:
 Suppose you have a variable called "vector_array" which is an array of this
