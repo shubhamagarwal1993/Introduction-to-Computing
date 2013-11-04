@@ -110,28 +110,28 @@ int main(void)
 assignment_t* get_assignments(gradebook_t *gradebook, int student)
 {
     /* TODO: Return pointer to student's assignments */
-    return NULL;
+    return gradebook->students[student].assignments;
 }
 
 /* 2/7 */
 student_t* get_student(gradebook_t *gradebook, int student)
 {
     /* TODO: Return pointer to current student in gradebook */
-    return NULL;
+    return &(gradebook->students[student]);
 }
 
 /* 3/7 */
 char* get_netid(gradebook_t *gradebook, int student)
 {
     /* TODO: Return current student's netid */
-    return NULL;
+    return gradebook->students[student].netid;
 }
 
 /* 4/7 */
 double get_score(gradebook_t *gradebook, int student, int assignment)
 {
     /* TODO: Return student's score for assignment */
-    return 0;
+    return gradebook->students[student].assignments[assignment].score;
 }
 
 /* 5/7 */
@@ -139,6 +139,7 @@ void set_score(gradebook_t *gradebook, int student,
                int assignment, double score)
 {
     /* TODO: Set student's score for assignment */
+	gradebook->students[student].assignments[assignment].score=score;
 }
 
 /* 6/7 */
@@ -147,12 +148,26 @@ double student_average_score(gradebook_t *gradebook, int student)
     /* TODO: Return average score for student (all scores are
      *       weighted equally)
      */
-    return 0;
+	int i=0;
+	double sum=0.0;
+	for(i=0;i<N;i++)
+	{
+		sum=sum+gradebook->students[student].assignments[i].score;
+	}
+    return sum/N;
 }
 
 /* 7/7 */
 double assignment_maximum_score(gradebook_t *gradebook, int assignment)
 {
     /* TODO: Return the maximum score for the given assignment */
-    return 0;
+    int i = 0;
+    double a=0.0,max =0.0;
+    for(i=0;i<N;i++)
+    {
+    	a=gradebook->students[i].assignments[assignment].score;
+    	if(max<a)
+    		max = a;
+    }
+    return max;
 }
