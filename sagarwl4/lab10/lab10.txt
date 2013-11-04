@@ -39,16 +39,18 @@ What if the parameter has type "int **"?
 >> we would still use the '&' once to pass the memory location of 'int' to 'int *' and the memory of 'int *' would be passed to 'int **'.
 ;-------------------------------------------------------------------
 Operator ->:
-Suppose you have a variable called "vector_array" which is an array of this
-"vector" type. Write a C expression to access the y component of element 4 of
-the array.
->> 
+Suppose you have a variable called "vector_array" which is an array of this "vector" type. Write a C expression to access the y component of element 4 of the array.
+>> (vector_array[4]).y;		//we go to the 4th element of array
 ;-------------------------------------------------------------------
 Operator &:
 Explain why "&array[3]" and "array + 3" are equivalent.
->> 
+>> in '&array[3]', we access the 3rd element of the array and take the address of that element. 
+In 'array+3', we point to the address of the first element of the array and add 3 to go to the 3rd element. Thus, we are taking the memory addresses by default and thus get the address of the 3rd element.
+Thus, they are equivalent
 ;-------------------------------------------------------------------
 operator sizeof:
 Another use of the sizeof operator is to compute the number of elements in
 an array: sizeof array / sizeof array[0] . Explain why this trick works.
 >>
+
+
