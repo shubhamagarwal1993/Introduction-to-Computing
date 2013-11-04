@@ -49,8 +49,7 @@ In 'array+3', we point to the address of the first element of the array and add 
 Thus, they are equivalent
 ;-------------------------------------------------------------------
 operator sizeof:
-Another use of the sizeof operator is to compute the number of elements in
-an array: sizeof array / sizeof array[0] . Explain why this trick works.
->>
+Another use of the sizeof operator is to compute the number of elements in an array: sizeof array / sizeof array[0] . Explain why this trick works.
+>>The expression 'sizeof array' gives us the size of the array and the expression '/ sizeof array[0]' gives us the size of the first element of the array. Since, the size of all elements of an array is the same, this trick gives us the number of elements in an array.
 
 
