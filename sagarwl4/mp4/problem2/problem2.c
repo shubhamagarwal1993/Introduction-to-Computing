@@ -1,30 +1,43 @@
 #include<stdio.h>
 
-/*int Tribon();*/
+int Tribon(int n);
 
 int main()
 {
-	int n = 0;
+	int i;
 	int sequence;
-	int array[100];
-loop:
+	
 	printf("input: ");
-	scanf("%d", &sequence);
+	scanf("%d", &i);
+	
+	sequence = Tribon(i);
+	printf("the Tribonacci number is %d\n", sequence);
+	return 0;
+}	
+	
+int Tribon(int n)	
+{	
+	int sum;
 	
 	if (n == 0)
 	{
-		printf("enter n>0"); 
-		goto loop;
+		return 0;
 	}
 	
-	array[1] = 0;
-	array[2] = 1;
-	
-	for(int i=2; i<sequence; i++)
+	if (n == 1)
 	{
-		array[i]=array[i-1]+array[i-2]+array[i-3];
+		return 1;
 	}
-	printf("%d",array[n]);
-return 0;
+	
+	if (n == 2)
+	{
+		return 1;
+	}
+	
+	else
+	{
+		sum = Tribon(n-1) + Tribon(n-2) + Tribon(n-3);
+		return sum;
+	}		
 }
 
