@@ -1,7 +1,7 @@
 #include<stdio.h>
 #define N 10
 
-int setMinMax(int List[N], char method);
+int setMinMax(int List[], char method);
 
 int main()
 {
@@ -12,7 +12,7 @@ int main()
 	return 0;
 }
 
-int setMinMax(int List[N], char method)
+int setMinMax(int List[], char method)
 {
 	int i;
 	int maxInList;
