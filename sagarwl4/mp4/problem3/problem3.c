@@ -1,3 +1,5 @@
+/* computing the minimum and maximum elements of an array*/
+
 #include<stdio.h>
 #define N 10
 
@@ -6,9 +8,9 @@ int setMinMax(int List[], char method);
 int main()
 {
 	int List[N]={4,5,10,19,-43,-3,19,33,34,2};
-	
-	printf("the max no. in the list is %d\n", setMinMax(List,'a'));
-	printf("the min no. in the list is %d\n", setMinMax(List,'b'));
+	int maxInList = setMinMax(List,'a');
+	int minInList = setMinMax(List,'b');
+	printf("Min %d Max %d \n", minInList, maxInList );
 	return 0;
 }
 
@@ -21,7 +23,6 @@ int setMinMax(int List[], char method)
 	if (method == 'a')
 	{
 		maxInList = List[0];
-		printf("max is %d\n", maxInList);
 		for (i=1; i<10; i++)
 		{
 			if (List[i] > maxInList)
