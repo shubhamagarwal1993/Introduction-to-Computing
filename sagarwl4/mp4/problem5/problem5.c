@@ -1,4 +1,4 @@
-/*finding the approximate value of e^x*/
+/*finding the approximate value of e^x as a Taylor series*/
 
 #include<stdio.h>
 float Exp(float a, float b);
@@ -9,14 +9,25 @@ float raisedto(float j, float k);
 int main()
 {
 	float x;
-	int n;
+	float n;
+	float result;
 	printf("input x and n: ");
-	scanf("%f %d ", &x, &n);
-	
-	printf("%f",Exp(x,n));
-	return 0;
+	scanf("%f %f", &x, &n);
+	result = Exp(x,n);	
+	printf("exp(%f) = %f\n",x, result);
 } 
 
+float Exp(float a, float b)
+{
+	float sum = 0;
+	int i;	
+	for (i = 1; i <= b; i++)
+		{
+			sum = sum + (raisedto(a,i)/factorial(i));
+		}	
+	sum = 1 + sum; 
+	return sum;
+}
 
 float factorial(float n)
 {
@@ -39,15 +50,4 @@ float raisedto(float j, float k)
 	}
 	return pro;
 } 
-float Exp(float a, float b)
-{
-	float sum = 0;
-	int i;	
-	for (i = 1; i <= b; i++)
-		{
-			sum = sum + (raisedto(a,i)/factorial(i));
-		}	
-	sum = 1 + sum; 
-	return sum;
-}
 
