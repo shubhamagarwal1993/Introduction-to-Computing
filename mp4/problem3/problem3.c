@@ -7,8 +7,8 @@ int main()
 {
 	int List[N]={4,5,10,19,-43,-3,19,33,34,2};
 	
-	printf("the max no. in the list is %d\n", setMinMax(&List[N],'a'));
-	printf("the min no. in the list is %d\n", setMinMax(&List[N],'b'));
+	printf("the max no. in the list is %d\n", setMinMax(List,'a'));
+	printf("the min no. in the list is %d\n", setMinMax(List,'b'));
 	return 0;
 }
 
@@ -28,8 +28,8 @@ int setMinMax(int List[], char method)
 			{
 				maxInList = List[i];
 			}
-		return maxInList;
 		}
+	return maxInList;
 	}
 	/*for finding min number*/
 	if (method == 'b')
@@ -41,8 +41,8 @@ int setMinMax(int List[], char method)
 			{
 				minInList = List[i];
 			}
-		return minInList;
 		}
+	return minInList;
 	}
 return 0;
 }
