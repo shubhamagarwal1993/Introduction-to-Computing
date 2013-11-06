@@ -1,3 +1,5 @@
+/* computing nth Tribonacci number */
+
 #include<stdio.h>
 
 int Tribon(int n);
