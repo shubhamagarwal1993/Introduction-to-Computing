@@ -4,14 +4,14 @@ int Tribon(int n);
 
 int main()
 {
-	int i;
-	int sequence;
+	int n;
+	int result;
 	
-	printf("input: ");
-	scanf("%d", &i);
+	printf("input n: ");
+	scanf("%d", &n);
 	
-	sequence = Tribon(i);
-	printf("the Tribonacci number is %d\n", sequence);
+	result = Tribon(n);
+	printf("%d th Tribonacci is %d\n",n, result);
 	return 0;
 }	
 	
@@ -26,10 +26,15 @@ int Tribon(int n)
 	
 	if (n == 1)
 	{
-		return 1;
+		return 0;
 	}
 	
 	if (n == 2)
+	{
+		return 1;
+	}
+	
+	if (n == 3)
 	{
 		return 1;
 	}
