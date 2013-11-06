@@ -12,7 +12,7 @@ float Cholesterol[N] = {255.6, 200.99, 120.6, 239, 400};
 int Risk[N];
 int current_year = 2013;
 /* call calcRisk*/
-calcRisk(YoB,Cholesterol,Risk,current_year);
+calcRisk(YoB,Cholesterol,Risk,current_year);				//calling function
 printf("\n Risk vector: ");
 for (int i = 0; i < N; i++)
 	printf(" %d ", Risk[i]); 
@@ -22,18 +22,18 @@ return 0;
 int calcRisk(int YoB[], float Cholestrol[], int Risk[], int current_year)
 {
 	int i;
-	int age;
+	int age;												//finding age of patient
 	
 	for (i = 0; i < N; i++)
 	{
-		age = (current_year - YoB[i]);
+		age = (current_year - YoB[i]);						//if age>80, then terminate
 		if (age > 80)
 		{
 			Risk[i] = 0;
 			return 0;
 		}	
 	
-		if (Cholestrol[i] > 300 || ((age*1.2)+Cholestrol[i]) > 300)
+		if (Cholestrol[i] > 300 || ((age*1.2)+Cholestrol[i]) > 300)		//finding risk for age<80
 		{
 			Risk[i] = 1;
 		}
