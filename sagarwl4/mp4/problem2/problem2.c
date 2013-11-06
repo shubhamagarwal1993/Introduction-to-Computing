@@ -9,7 +9,7 @@ int main()
 	int n;
 	int result;
 	
-	printf("input n: ");
+	printf("input n: ");								//user input for n > 0		
 	scanf("%d", &n);
 	
 	result = Tribon(n);
@@ -21,17 +21,17 @@ int Tribon(int n)
 {	
 	int sum;
 	
-	if (n == 0)
+	if (n == 0)											//not defined for 0th number
 	{
 		return 0;
 	}
 	
-	if (n == 1)
+	if (n == 1)											//first number
 	{
 		return 0;
 	}
 	
-	if (n == 2)
+	if (n == 2)											
 	{
 		return 1;
 	}
@@ -43,7 +43,7 @@ int Tribon(int n)
 	
 	else
 	{
-		sum = Tribon(n-1) + Tribon(n-2) + Tribon(n-3);
+		sum = Tribon(n-1) + Tribon(n-2) + Tribon(n-3);		//adding prev 3 numbers
 		return sum;
 	}		
 }
