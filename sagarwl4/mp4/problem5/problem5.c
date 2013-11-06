@@ -17,19 +17,19 @@ int main()
 	printf("exp(%f) = %f\n",x, result);
 } 
 
-float Exp(float a, float b)
+float Exp(float a, float b)								//function for exponent
 {
 	float sum = 0;
 	int i;	
 	for (i = 1; i <= b; i++)
 		{
-			sum = sum + (raisedto(a,i)/factorial(i));
+			sum = sum + (raisedto(a,i)/factorial(i));	//calling other 2 functions
 		}	
 	sum = 1 + sum; 
 	return sum;
 }
 
-float factorial(float n)
+float factorial(float n)								//function for factorial
 {
 	float c;
 	float fact = 1;
@@ -40,7 +40,7 @@ float factorial(float n)
 	return fact;
 }
 
-float raisedto(float j, float k)
+float raisedto(float j, float k)						//function for finding a^b
 {
 	int i = 0; 
 	int pro = 1;
