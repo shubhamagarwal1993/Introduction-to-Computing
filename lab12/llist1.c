@@ -78,9 +78,9 @@ int main()
     {
     	node *tempo = head;
     	
-    	free(tempo);
-    	
     	head = head-> next;
+	
+		free(tempo);
 	}
 
     return 0;
