@@ -74,15 +74,52 @@ int main()
     printf("After:\n");
     printList(head);
 
-    //free linked list here
-
+    while(head!=NULL)
+    {
+    	node *tempo = head;
+    	
+    	free(tempo);
+    	
+    	head = head-> next;
+	}
 
     return 0;
 }
 
 void remove_duplicates(node * head)
 {
-    //add your code here
-
-
+    node* next_node;
+    
+    node* current_node = head;
+	
+	if(current_node==NULL)
+	{
+		return;
+	}
+	
+	while(current_node->next!=NULL)
+	{
+		
+		if(current_node -> data == current_node -> next -> data)
+		{
+			next_node = current_node->next->next;
+			
+			free(current_node->next);
+			
+			current_node -> next= next_node;
+		}
+		
+		else
+		{
+			current_node = current_node -> next;
+		}
+	}
+    
+    
+    
+    
+    
+    
+    
+    	
 }
