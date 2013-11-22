@@ -1,0 +1,7 @@
+// Symbol table
+// Scope level 0:
+//	Symbol Name       Page Address
+//	----------------  ------------
+//	INSERT            3000
+//	INSERT_REC        3000
+//	RET_RO            301B
