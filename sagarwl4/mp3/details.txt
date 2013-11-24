@@ -1,0 +1,35 @@
+Code compiles and has been edited
+
+Output Test 1 - Sample Output 1: 0/2.5
+Output Test 2 - Sample Output 2: 0/2.5
+Output Test 3 - B=0,C=0: 0/2.5
+Output Test 4 - A=0,C=0: 0/2.5
+Output Test 5 - A=0,B=0: 0/2.5
+Infinite Loop Error: Output Test 6 - multiple b<=a: 0/2.5
+Output Test 7 - multiple N<1: 0/2.5
+
+Polynomial Function Test 1 - A=3 B=4 C=5 x=0.5: 2.5/2.5
+Polynomial Function Test 2 - A=3 B=4 C=5 x=0: 2.5/2.5
+Polynomial Function Test 3 - A=-3.1 B=0 C=0 x=-0.3: 2.5/2.5
+Polynomial Function Test 4 - A=0 B=-3.1 C=0 x=-0.3: 2.5/2.5
+Polynomial Function Test 5 - A=0 B=0 C=-3.1 x=-0.3: 2.5/2.5
+
+Riemann Function Test L1 - a=1 b=1.1 N=3 A=2.718 B=7 C=3.142 method=‘L’: 3/3
+Riemann Function Test L2 - a=-1 b=5 N=6 A=1 B=-3 C=6 method=‘L’: 3/3
+Riemann Function Test L3 - a=-1 b=1 N=10 A=3 B=0 C=0 method=‘L’: 3/3
+Riemann Function Test L4 - a=-1 b=1 N=10 A=0 B=3 C=0 method=‘L’: 3/3
+Riemann Function Test L5 - a=-1 b=1 N=10 A=0 B=0 C=3 method=‘L’: 3/3
+
+Riemann Function Test R1 - a=1 b=1.1 N=3 A=2.718 B=7 C=3.142 method=‘R’: 3/3
+Riemann Function Test R2 - a=-1 b=5 N=6 A=1 B=-3 C=6 method=‘R’: 3/3
+Riemann Function Test R3 - a=-1 b=1 N=10 A=3 B=0 C=0 method=‘R’: 3/3
+Riemann Function Test R4 - a=-1 b=1 N=10 A=0 B=3 C=0 method=‘R’: 3/3
+Riemann Function Test R5 - a=-1 b=1 N=10 A=0 B=0 C=3 method=‘R’: 3/3
+
+Riemann Function Test M1 - a=1 b=1.1 N=3 A=2.718 B=7 C=3.142 method=‘M’: 3/3
+Riemann Function Test M2 - a=-1 b=5 N=6 A=1 B=-3 C=6 method=‘M’: 3/3
+Riemann Function Test M3 - a=-1 b=1 N=10 A=3 B=0 C=0 method=‘M’: 3/3
+Riemann Function Test M4 - a=-1 b=2 N=10 A=0 B=3 C=0 method=‘M’: 3/3
+Riemann Function Test M5 - a=-1 b=1 N=10 A=0 B=0 C=3 method=‘M’: 3/3
+
+MP3.2 Functionality Total: 57.5/75
