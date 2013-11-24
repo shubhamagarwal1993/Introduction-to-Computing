@@ -1,0 +1,12 @@
+Coding Conventions: 10/15
+    + 5 pts overall style
+    + 2.5 pts tabs
+    + 2.5 pts braces
+    X 2.5 pts polynomial function documented
+    X 2.5 pts riemann function documented
+Comments: 10/10
+    + 5 pts header
+    + 5 pts commented blocks of code (not each line)
+Total: 20/25
+
+Comments: 
