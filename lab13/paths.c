@@ -14,8 +14,33 @@ int count_shortest_paths(int start_x, int start_y, int end_x, int end_y)
  
 {
  
-   int paths = 0;
+	int paths = 0;
  
+	if ((start_x == end_x) && (start_y == end_y))
+	{
+		return 1;
+	}	 	
+	
+	if (start_x > end_x)
+	{
+		paths = paths + count_shortest_paths(start_x - 1, start_y, end_x, end_y);
+	}
+	
+	if (start_x < end_x)
+	{
+		paths = paths + count_shortest_paths(start_x + 1, start_y, end_x, end_y);
+	}
+	
+	if (start_y > end_y)
+	{
+		paths = paths + count_shortest_paths(start_x, start_y - 1, end_x, end_y);
+	}
+	
+	if (start_y < end_y)
+	{
+		paths = paths + count_shortest_paths(start_x, start_y + 1, end_x, end_y);
+	}
+	
    return paths;
  
 }
