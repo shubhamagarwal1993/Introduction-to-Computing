@@ -11,7 +11,11 @@ int main()
     printf("Testing (0,-1) -> (0,1) (1 paths)\n");
     printf("Result: %d\n", count_shortest_paths(0, -1, 0, 1));
     
-	
+    printf("Testing (1,1) -> (1,1) (1 paths)\n");
+    printf("Result: %d\n", count_shortest_paths(1, 1, 1, 1));
+
+    printf("Testing (-1,-1) -> (1,1) (6 paths)\n");
+    printf("Result: %d\n", count_shortest_paths(-1, -1, 1, 1));
 
 	return 0;
 }
