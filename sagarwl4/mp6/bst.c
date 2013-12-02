@@ -1,38 +1,205 @@
+/*
+	Name: Shubham Agarwal
+	NetID: sagarwl4
+	Lab Section: AD9
+*/
+
+
 #include "bst.h"
 
 NODE* getNewNode()
 {
     /* Your implementation goes here */
+
+	if (root == NULL)
+	{
+		NODE* temp = getNewNode();
+	}
+	
+	return ;
 }
 
 NODE* findMax(NODE *root)
 {
     /* Your implementation goes here */
+    
+    
+    if (root == NULL)
+    {
+    	return NULL
+    }
+    
+    else
+    {
+    	if (root->right == NULL)
+    	{
+    		return root;
+    	}
+    	else 
+    		return findMax(root->right)
+    
+    
+    }	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
+
+
 
 NODE* insert(NODE *root, int data)
 {
     /* Your implementation goes here */
+
+	if(root == NULL)
+	{
+		NODE* temp = getNewNode();
+		temp->left = temp->right = NULL;
+		temp->data = data;
+		return temp;
+	} 
+	if(data < root->data)
+	{
+		root->left = insert(root->left,data);		
+	}
+	else if(data > root->data)
+	{
+		root->right = insert(root->right,data);
+	}
+	return root;
 }
+
 
 NODE* delete(NODE *root, int data)
 {
     /* Your implementation goes here */
+    
+    
+    
+    if (root == NULL)
+    {
+    	printf("Element not found in the tree");
+    }
+    
+    else if (data < root->data)
+    {
+    	root->left = delete(root->left, data)
+    }
+    
+    else if (data < root->data)
+    {
+    	root->right = delete(root->right, data)
+    }
+    
+    else
+    {
+    	if(root->left != NULL && root->right != NULL)
+    	{
+    		maxNode = findMax(root->left);
+			root->data = maxNode();
+			root->left = delete (root->left,) 
+		}
+ 		else if (root->left != NULL || root->right != NULL)
+ 		{
+ 			if (root->left != NULL)
+ 			{
+ 				root = root->left;
+ 			}
+ 			else
+ 				root = root->right;
+ 				
+    	}
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 void preorder(NODE *root)
 {
-    /* Your implementation goes here */
+    /* Your implementation goes here - root/left/right*/
+    
+    
+    if (root != NULL)
+    {
+    	printf("%d\t",root->data);				//print the data on the root//
+    	preorder(root->left);					//traverse left of root and print//
+    	preorder(root->right);					//traverse right of root and print//
+    }
 }
 
 void inorder(NODE *root)
 {
-    /* Your implementation goes here */
+    /* Your implementation goes here left/node/right*/
+
+	    if (root != NULL)
+    {
+    	inorder(root->left);					//print the data on the left//
+    	{
+    		printf("%d\t", root->data);
+    	}
+    	
+    	
+		printf("%d", );							//print the original root//
+    	
+    	
+    	inorder(root->right);					//print the data on the right//
+    	{
+    		printf("%d\t", root->data);
+    	}
+
+    }
+
 }
 
 void postorder(NODE *root)
 {
-    /* Your implementation goes here */
+    /* Your implementation goes here - left/right/root*/
+
+    if (root != NULL)
+    {
+    	postorder(root->left);					//print the data on the left//
+    	{
+    		printf("%d\t", root->data);
+    	}
+    	
+    	postorder(root->right);					//print the data on the right//
+    	{
+    		printf("%d\t", root->data);
+    	}
+
+		printf("%d", );							//print the original root//
+    }
+
+
 }
 
 int main()
