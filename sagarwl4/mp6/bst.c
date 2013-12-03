@@ -11,8 +11,8 @@ NODE* getNewNode()
 {
     /* Your implementation goes here */
 
-		NODE* newNode;
-		newNode = (NODE *) malloc(sizeof(NODE));
+		NODE* newNode;											/*a pointer newnode with type NODE*/
+		newNode = (NODE *) malloc(sizeof(NODE));				/*this will allocate dynamic memory*/
 		return newNode;
 }
 
@@ -24,7 +24,7 @@ NODE* findMax(NODE *root)
     {
     	return NULL;
     }
-    else
+    else														/*this will find the max number from the tree */
     {
     	if (root->right == NULL)
     	{
@@ -45,15 +45,15 @@ NODE* insert(NODE *root, int data)
 	if(root == NULL)
 	{
 		newNode = getNewNode();
-		newNode->left = newNode->right = NULL;
-		newNode->data = data;
+		newNode->left = newNode->right = NULL;					/*create a new node with 2 subnodes and clear them*/
+		newNode->data = data;									/*put data in the new root created*/
 		return newNode;
 	} 
-	else if(data < root->data)
+	else if(data < root->data)									/*we are decideing whether to place data in left or right subnode*/		
 	{
 		root->left = insert(root->left,data);		
 	}
-	else if(data > root->data)
+	else if(data > root->data)									/*we are decideing whether to place data in left or right subnode*/
 	{
 		root->right = insert(root->right,data);
 	}
@@ -67,11 +67,11 @@ NODE* delete(NODE *root, int data)
    	NODE * maxNode; 
     if (root == NULL)
     {
-    	printf("Element not found in the tree");
+    	printf("Element not found in the tree");				/*error check message if we try deleting a void root*/
     }
     else if (data < root->data)
     {
-    	root->left = delete(root->left, data);
+    	root->left = delete(root->left, data);					/*here we delete the corresponding subnode data*/
     }
     else if (data > root->data)
     {
@@ -79,7 +79,7 @@ NODE* delete(NODE *root, int data)
     }
     else
     {
-    	if(root->left != NULL && root->right != NULL)
+    	if(root->left != NULL && root->right != NULL)			/*here we properly delete each element to prevent memory leaks*/
     	{
     		
     		maxNode = findMax(root->left);
@@ -100,39 +100,39 @@ NODE* delete(NODE *root, int data)
     return root;
 }
 
-void preorder(NODE *root)
+void preorder(NODE *root)						 				/* print order - root/left/right*/
 {
-    /* Your implementation goes here - root/left/right*/
+    /* Your implementation goes here*/	
     
     if (root != NULL)
     {
-    	printf("%d ",root->data);				//print the data on the root//
-    	preorder(root->left);					//traverse left of root and print//
-    	preorder(root->right);					//traverse right of root and print//
+    	printf("%d ",root->data);								/*print the data on the root*/
+    	preorder(root->left);									/*traverse left of root and print*/
+    	preorder(root->right);									/*traverse right of root and print*/
     }
 }
 
-void inorder(NODE *root)
+void inorder(NODE *root)										/*print order - left/node/right*/
 {
-    /* Your implementation goes here left/node/right*/
+    /* Your implementation goes here*/ 
 
 	if (root != NULL)
     {
-	    inorder(root->left);					//traverse left of root and print//	
-	    printf("%d ",root->data);				//print the data on the root//
-	    inorder(root->right);
+	    inorder(root->left);									/*traverse left of root and print*/	
+	    printf("%d ",root->data);								/*print the data on the root*/
+	    inorder(root->right);									/*traverse right of root and print*/
 	}    
 }
 
-void postorder(NODE *root)
+void postorder(NODE *root)										/* print order - left/right/root*/
 {
-    /* Your implementation goes here - left/right/root*/
+    /* Your implementation goes here*/ 
 
 	if (root != NULL)
     {
-		postorder(root->left);					//traverse left of root and print//
-    	printf("%d ",root->data);				//print the data on the root//
-    	postorder(root->right);
+		postorder(root->left);									/*traverse left of root and print*/
+    	printf("%d ",root->data);								/*print the data on the root*/
+    	postorder(root->right);									/*traverse right of root and print*/
     }    
 }
 
