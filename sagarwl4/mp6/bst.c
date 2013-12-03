@@ -64,7 +64,7 @@ NODE* delete(NODE *root, int data)
 {
     /* Your implementation goes here */
 
-   	NODE * maxNode; 
+   	NODE * maxNode = 0; 
     if (root == NULL)
     {
     	printf("Element not found in the tree");				/*error check message if we try deleting a void root*/
@@ -95,9 +95,13 @@ NODE* delete(NODE *root, int data)
  			else
  				root = root->right;
     	}
-    	else return NULL;
+		
+    	else 
+    	return NULL;
     }
+    free(maxNode);
     return root;
+	
 }
 
 void preorder(NODE *root)						 				/* print order - root/left/right*/
