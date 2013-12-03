@@ -10,7 +10,6 @@
 NODE* getNewNode()
 {
     /* Your implementation goes here */
-	// refered from the text book//
 
 		NODE* newNode;
 		newNode = (NODE *) malloc(sizeof(NODE));
@@ -21,12 +20,10 @@ NODE* findMax(NODE *root)
 {
     /* Your implementation goes here */
     
-    
     if (root == NULL)
     {
     	return NULL;
     }
-    
     else
     {
     	if (root->right == NULL)
@@ -40,11 +37,10 @@ NODE* findMax(NODE *root)
     }	
 }
 
-
-
 NODE* insert(NODE *root, int data)
 {
     /* Your implementation goes here */
+
 	NODE *newNode;
 	if(root == NULL)
 	{
@@ -64,28 +60,23 @@ NODE* insert(NODE *root, int data)
 	return root;
 }
 
-
 NODE* delete(NODE *root, int data)
 {
     /* Your implementation goes here */
+
    	NODE * maxNode; 
-    
-    
     if (root == NULL)
     {
     	printf("Element not found in the tree");
     }
-    
     else if (data < root->data)
     {
     	root->left = delete(root->left, data);
     }
-    
     else if (data > root->data)
     {
     	root->right = delete(root->right, data);
     }
-    
     else
     {
     	if(root->left != NULL && root->right != NULL)
@@ -113,7 +104,6 @@ void preorder(NODE *root)
 {
     /* Your implementation goes here - root/left/right*/
     
-    
     if (root != NULL)
     {
     	printf("%d",root->data);				//print the data on the root//
@@ -128,15 +118,10 @@ void inorder(NODE *root)
 
 	if (root != NULL)
     {
-  
-    
-    inorder(root->left);					//traverse left of root and print//
-    printf("%d",root->data);				//print the data on the root//
-    inorder(root->right);
-    
+	    inorder(root->left);					//traverse left of root and print//	
+	    printf("%d",root->data);				//print the data on the root//
+	    inorder(root->right);
 	}    
-
-
 }
 
 void postorder(NODE *root)
@@ -145,15 +130,10 @@ void postorder(NODE *root)
 
 	if (root != NULL)
     {
-  
-    
-    inorder(root->left);					//traverse left of root and print//
-    printf("%d",root->data);				//print the data on the root//
-    inorder(root->right);
-    
-	}    
-
-
+		postorder(root->left);					//traverse left of root and print//
+    	printf("%d",root->data);				//print the data on the root//
+    	postorder(root->right);
+    }    
 }
 
 int main()
@@ -169,7 +149,7 @@ int main()
         printf("2 - Delete\n");
         printf("3 - Pre-Order\n");
         printf("4 - In-Order\n");
-	printf("5 - Post-Order\n");
+		printf("5 - Post-Order\n");
         printf("6 - Exit\n");
         printf("----------------------------------\n");
         scanf("%d",&choice);
