@@ -106,7 +106,7 @@ void preorder(NODE *root)
     
     if (root != NULL)
     {
-    	printf("%d",root->data);				//print the data on the root//
+    	printf("%d ",root->data);				//print the data on the root//
     	preorder(root->left);					//traverse left of root and print//
     	preorder(root->right);					//traverse right of root and print//
     }
@@ -119,7 +119,7 @@ void inorder(NODE *root)
 	if (root != NULL)
     {
 	    inorder(root->left);					//traverse left of root and print//	
-	    printf("%d",root->data);				//print the data on the root//
+	    printf("%d ",root->data);				//print the data on the root//
 	    inorder(root->right);
 	}    
 }
@@ -131,7 +131,7 @@ void postorder(NODE *root)
 	if (root != NULL)
     {
 		postorder(root->left);					//traverse left of root and print//
-    	printf("%d",root->data);				//print the data on the root//
+    	printf("%d ",root->data);				//print the data on the root//
     	postorder(root->right);
     }    
 }
