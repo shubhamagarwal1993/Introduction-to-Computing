@@ -10,13 +10,11 @@
 NODE* getNewNode()
 {
     /* Your implementation goes here */
+	// refered from the text book//
 
-	if (root == NULL)
-	{
-		NODE* temp = getNewNode();
-	}
-	
-	return ;
+		NODE* newNode;
+		newNode = (NODE *) malloc(sizeof(NODE));
+		return newNode;
 }
 
 NODE* findMax(NODE *root)
@@ -26,7 +24,7 @@ NODE* findMax(NODE *root)
     
     if (root == NULL)
     {
-    	return NULL
+    	return NULL;
     }
     
     else
@@ -36,20 +34,10 @@ NODE* findMax(NODE *root)
     		return root;
     	}
     	else 
-    		return findMax(root->right)
-    
-    
+    	{
+    		return findMax(root->right);
+    	}
     }	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 
@@ -57,15 +45,15 @@ NODE* findMax(NODE *root)
 NODE* insert(NODE *root, int data)
 {
     /* Your implementation goes here */
-
+	NODE *newNode;
 	if(root == NULL)
 	{
-		NODE* temp = getNewNode();
-		temp->left = temp->right = NULL;
-		temp->data = data;
-		return temp;
+		newNode = getNewNode();
+		newNode->left = newNode->right = NULL;
+		newNode->data = data;
+		return newNode;
 	} 
-	if(data < root->data)
+	else if(data < root->data)
 	{
 		root->left = insert(root->left,data);		
 	}
@@ -80,7 +68,7 @@ NODE* insert(NODE *root, int data)
 NODE* delete(NODE *root, int data)
 {
     /* Your implementation goes here */
-    
+   	NODE * maxNode; 
     
     
     if (root == NULL)
@@ -90,21 +78,22 @@ NODE* delete(NODE *root, int data)
     
     else if (data < root->data)
     {
-    	root->left = delete(root->left, data)
+    	root->left = delete(root->left, data);
     }
     
-    else if (data < root->data)
+    else if (data > root->data)
     {
-    	root->right = delete(root->right, data)
+    	root->right = delete(root->right, data);
     }
     
     else
     {
     	if(root->left != NULL && root->right != NULL)
     	{
+    		
     		maxNode = findMax(root->left);
-			root->data = maxNode();
-			root->left = delete (root->left,) 
+			root->data = maxNode->data;
+			root->left = delete (root->left, maxNode->data); 
 		}
  		else if (root->left != NULL || root->right != NULL)
  		{
@@ -114,33 +103,10 @@ NODE* delete(NODE *root, int data)
  			}
  			else
  				root = root->right;
- 				
     	}
+    	else return NULL;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    return root;
 }
 
 void preorder(NODE *root)
@@ -150,7 +116,7 @@ void preorder(NODE *root)
     
     if (root != NULL)
     {
-    	printf("%d\t",root->data);				//print the data on the root//
+    	printf("%d",root->data);				//print the data on the root//
     	preorder(root->left);					//traverse left of root and print//
     	preorder(root->right);					//traverse right of root and print//
     }
@@ -160,23 +126,16 @@ void inorder(NODE *root)
 {
     /* Your implementation goes here left/node/right*/
 
-	    if (root != NULL)
+	if (root != NULL)
     {
-    	inorder(root->left);					//print the data on the left//
-    	{
-    		printf("%d\t", root->data);
-    	}
-    	
-    	
-		printf("%d", );							//print the original root//
-    	
-    	
-    	inorder(root->right);					//print the data on the right//
-    	{
-    		printf("%d\t", root->data);
-    	}
+  
+    
+    inorder(root->left);					//traverse left of root and print//
+    printf("%d",root->data);				//print the data on the root//
+    inorder(root->right);
+    
+	}    
 
-    }
 
 }
 
@@ -184,20 +143,15 @@ void postorder(NODE *root)
 {
     /* Your implementation goes here - left/right/root*/
 
-    if (root != NULL)
+	if (root != NULL)
     {
-    	postorder(root->left);					//print the data on the left//
-    	{
-    		printf("%d\t", root->data);
-    	}
-    	
-    	postorder(root->right);					//print the data on the right//
-    	{
-    		printf("%d\t", root->data);
-    	}
-
-		printf("%d", );							//print the original root//
-    }
+  
+    
+    inorder(root->left);					//traverse left of root and print//
+    printf("%d",root->data);				//print the data on the root//
+    inorder(root->right);
+    
+	}    
 
 
 }
