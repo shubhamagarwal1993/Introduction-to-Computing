@@ -11,8 +11,8 @@ NODE* getNewNode()
 {
     /* Your implementation goes here */
 
-		NODE* newNode;											/*a pointer newnode with type NODE*/
-		newNode = (NODE *) malloc(sizeof(NODE));				/*this will allocate dynamic memory*/
+		NODE* newNode;										/*a pointer newnode with type NODE*/
+		newNode = (NODE *) malloc(sizeof(NODE));			/*this will allocate dynamic memory*/
 		return newNode;
 }
 
@@ -24,7 +24,7 @@ NODE* findMax(NODE *root)
     {
     	return NULL;
     }
-    else														/*this will find the max number from the tree */
+    else													/*this will find the max number from the tree */
     {
     	if (root->right == NULL)
     	{
@@ -45,15 +45,15 @@ NODE* insert(NODE *root, int data)
 	if(root == NULL)
 	{
 		newNode = getNewNode();
-		newNode->left = newNode->right = NULL;					/*create a new node with 2 subnodes and clear them*/
-		newNode->data = data;									/*put data in the new root created*/
+		newNode->left = newNode->right = NULL;				/*create a new node with 2 subnodes and clear them*/
+		newNode->data = data;								/*put data in the new root created*/
 		return newNode;
 	} 
-	else if(data < root->data)									/*we are decideing whether to place data in left or right subnode*/		
+	else if(data < root->data)								/*we are decideing whether to place data in left or right subnode*/		
 	{
 		root->left = insert(root->left,data);		
 	}
-	else if(data > root->data)									/*we are decideing whether to place data in left or right subnode*/
+	else if(data > root->data)								/*we are decideing whether to place data in left or right subnode*/
 	{
 		root->right = insert(root->right,data);
 	}
@@ -67,11 +67,11 @@ NODE* delete(NODE *root, int data)
    	NODE * maxNode = 0; 
     if (root == NULL)
     {
-    	printf("Element not found in the tree");				/*error check message if we try deleting a void root*/
+    	printf("Element not found in the tree");			/*error check message if we try deleting a void root*/
     }
     else if (data < root->data)
     {
-    	root->left = delete(root->left, data);					/*here we delete the corresponding subnode data*/
+    	root->left = delete(root->left, data);				/*here we delete the corresponding subnode data*/
     }
     else if (data > root->data)
     {
@@ -79,7 +79,7 @@ NODE* delete(NODE *root, int data)
     }
     else
     {
-    	if(root->left != NULL && root->right != NULL)			/*here we properly delete each element to prevent memory leaks*/
+    	if(root->left != NULL && root->right != NULL)		/*here we properly delete each element to prevent memory leaks*/
     	{
     		
     		maxNode = findMax(root->left);
@@ -95,8 +95,7 @@ NODE* delete(NODE *root, int data)
  			else
  				root = root->right;
     	}
-		
-    	else 
+		else 
     	return NULL;
     }
     free(maxNode);
