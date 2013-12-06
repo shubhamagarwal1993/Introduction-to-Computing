@@ -1,13 +1,22 @@
 1. What benefits does unit testing provide over testing a program as a whole?
-
+Ans:	Unit testing has the following advantages:
+		1.)capability of finding exactly where the mistake might be.
+		2.)We can write just a couple of functions and test if we might doing the right thing.
+		3.)while compiling we know exatly where the mistake in the function might be, whereas if we write the 				function and then compile, the actual mistake might end up to be at a completely different place 				than expecetd.  
+-----------------------------------------------------------------------------
 2. Your MPs have been graded by autograders. Do the autograders perform black
    box testing or white box testing? Explain your answer.
-
+Ans:    The autograders perform white box testing because:
+		1.)The underlying code must be correct except for a couple of places and thus students can get some 			partial credits.
+		2.)Since whitebox is transparent, the code can actually be checked for cheating or plagirism by 			comparing to other codes simultaneously.
+   		3.)Since white box testing is particular about edge cases, it is a good way to teach and check for all 				possible cases and produce the appropriate results.
+-----------------------------------------------------------------------------
 3. Describe at least one pessimistic test case for programming problem 2 on
    midterm 2 day 1 (rawFloat multiplication).
-
+Ans:  
+-----------------------------------------------------------------------------
 4.     float result = my_sin(360.0);
-       assert(result == 0.0);
+       assert(result <= 0.01 && result => 0.01);
 
    The assert in the above code snippet is too strict. Assume the
    specification allows my_sin to be off by at most 0.01. How should the
