@@ -13,19 +13,16 @@ NODE* getNewNode()
     	NODE* newNode;									/*a pointer newnode with type NODE*/
 		newNode = (NODE *) malloc(sizeof(NODE));		/*this will allocate dynamic memory*/
 		return newNode;
-
 }
 
 
 NODE* insert_splay(NODE *root, int data)
 {
     /* Your implementation goes here */
-    
-    
     root = NULL;
     root = insert(root, data);
     root = search(root, data);
-    splay(root, &*root);	
+    splay(root, &root);	
     return root;
 }    
     
@@ -34,23 +31,22 @@ NODE* insert(NODE *root, int data)
 {
     /* Your implementaion goes here */
     /* This function is very similar to the one in MP6.1 with a few modifications */
-
 	NODE *newNode;
 	if(root == NULL)
 	{
 		newNode = getNewNode();
-		newNode->left = newNode->right = NULL;			/*new node with 2 subnodes & cleared*/
-		newNode->data = data;							/*put data in the new root created*/
+		newNode->left = newNode->right = NULL;		/*new node with 2 subnodes & cleared*/
+		newNode->data = data;						/*put data in the new root created*/
 		newNode->parent = NULL;
 	} 
 	else
 	{	
-		if(data < root->data)							/*choosing place for data, left/right*/		
+		if(data < root->data)						/*choosing place for data, left/right*/		
 		{
 			root->left = insert(root->left,data);	
 			root->left->parent = root;	
 		}
-		else if(data > root->data)						/*choosing place for data, left/right*/
+		else if(data > root->data)					/*choosing place for data, left/right*/
 		{
 			root->right = insert(root->right,data);
 			root->right->parent = root;
@@ -64,12 +60,11 @@ return root;
 void preorder(NODE *root)
 {
     /* Copy your implementation from MP 6.1 here */
-    
      if (root != NULL)
     {
-    	printf("%d ",root->data);								/*print the data on the root*/
-    	preorder(root->left);									/*traverse left of root and print*/
-    	preorder(root->right);									/*traverse right of root and print*/
+    	printf("%d ",root->data);					/*print the data on the root*/
+    	preorder(root->left);						/*traverse left of root and print*/
+    	preorder(root->right);						/*traverse right of root and print*/
     }
 }
 
@@ -77,15 +72,12 @@ void preorder(NODE *root)
 void inorder(NODE *root)
 {
     /* Copy your implementation from MP 6.1 here */
-
-
 	if (root != NULL)
     {
-	    inorder(root->left);									/*traverse left of root and print*/	
-	    printf("%d ",root->data);								/*print the data on the root*/
-	    inorder(root->right);									/*traverse right of root and print*/
+	    inorder(root->left);						/*traverse left of root and print*/	
+	    printf("%d ",root->data);					/*print the data on the root*/
+	    inorder(root->right);						/*traverse right of root and print*/
 	}    
-
 }
 
 
@@ -95,9 +87,9 @@ void postorder(NODE *root)
 
 	if (root != NULL)
     {
-		postorder(root->left);									/*traverse left of root and print*/
-    	postorder(root->right);									/*traverse right of root and print*/
-		printf("%d ",root->data);								/*print the data on the root*/
+		postorder(root->left);						/*traverse left of root and print*/
+    	postorder(root->right);						/*traverse right of root and print*/
+		printf("%d ",root->data);					/*print the data on the root*/
     }    
 
 }
@@ -106,45 +98,42 @@ void postorder(NODE *root)
 NODE* search(NODE *root, int data)
 {
     /* Your implementaion goes here */
-    
     if (root == NULL)
     {
     	return root;
     }
-    
     if (root->data == data)
     {
     	return root;
     }
-    
     else if (data < root->data)
     {
     	search(root->left, data);
     }
-    
     else
     {
     	search(root->right, data);
     }
+return 0;
 }
 
 
 void left_rotate( NODE *node, NODE **root ) 
 {
     /* Your implementaion goes here */
-    int *temp;
+    NODE *temp;
     temp = node->right;
-    root->right = temp->left;
+    *root->right = temp->left;
     if (temp->left != NULL)
     {
-    	temp->left->parent = node;			//check
+    	temp->left->parent = node;			
     } 
     temp->parent = node->parent;
     if (node->parent == NULL)
     {
     	*root = temp;
     }
-    else if (node == node->parent->left)	//check
+    else if (node == node->parent->left)	
     {
     	node->parent->left = temp;
     }
@@ -153,14 +142,14 @@ void left_rotate( NODE *node, NODE **root )
     	node->parent->right = temp;
     }
     temp->left = node;
-    root->parent = temp;
+    *root->parent = temp;
 }
 
  
 void right_rotate( NODE *node, NODE **root ) 
 {
     /* Your implementaton goes here */
-	
+	NODE *temp;
 	temp = node->left;
     node->left = temp->right;
     if (temp->right != NULL)
@@ -182,28 +171,26 @@ void right_rotate( NODE *node, NODE **root )
     }
     temp->right = node;
     node->parent = temp;
-
 }
 
 
 void splay(NODE *node , NODE **root) 
 {
     /* Your implementation goes here */
-    
     while (node->parent != NULL)
     {
     	if (node->parent == NULL)
     	{
-    		if (node->parent->left = node)
+    		if ((node->parent->left) == node)
     		{
-    			right_rotate(node->parent, *root);
+    			right_rotate(node->parent, **root);
     		}
     		else 
     		{
     			left_rotate(node->parent, *root);
     		}
 		}
-		else if (node->parent->left = node && node->parent->parent->left == node->parent)
+		else if ((node->parent->left == node) && (node->parent->parent->left == node->parent))
 		{
 			right_rotate(node->parent->parent, *root);
 			right_rotate(node->parent, *root);
@@ -223,8 +210,7 @@ void splay(NODE *node , NODE **root)
 			left_rotate(node->parent, *root);
 			right_rotate(node->parent, *root);
 		}
-		
-    }
+  	}
 }
 
     
