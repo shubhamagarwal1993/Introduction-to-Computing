@@ -17,7 +17,10 @@ int main(int argc, const char *argv[])
 
     printf("Enter the two numbers: ");
     scanf("%d %d", &a, &b);
-
+	
+	x = &a;
+	y = &b;
+	
     if (a > b)
     {
         swap(x, y);
@@ -32,6 +35,6 @@ void swap(int *x, int *y)
 {
     int temp = 0;
     temp = *y;
-    *x = *y;
-    *y = temp;
+    *y = *x;
+    *x = temp;
 }

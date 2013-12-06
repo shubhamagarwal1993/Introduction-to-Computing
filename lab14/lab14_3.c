@@ -13,13 +13,22 @@
 
 int gcd(int x, int y)
 {
+	if (y != 0)
+	{
     return gcd(y, x % y);
+	}
+	
+	else
+	{
+		return x;
+	}
 }
 
 int main(int argc, const char *argv[])
 {
-    if (argc < 3) {
-        fprintf(stderr, "Compute the GCD of two numbers x and y\n"
+    if (argc < 3)
+    {
+    	fprintf(stderr, "Compute the GCD of two numbers x and y\n"
                         "Usage: %s x y\n", argv[0]);
         return EXIT_FAILURE;
     }
