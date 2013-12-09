@@ -19,10 +19,11 @@ NODE* getNewNode()
 NODE* insert_splay(NODE *root, int data)
 {
     /* Your implementation goes here */
-    root = NULL;
+    NODE *newNode;
+    newNode = NULL;
     root = insert(root, data);
-    root = search(root, data);
-    splay(root, &root);	
+    newNode = search(root, data);
+    splay(newNode, &root);	
     return root;
 }    
     
@@ -38,6 +39,7 @@ NODE* insert(NODE *root, int data)
 		newNode->left = newNode->right = NULL;		/*new node with 2 subnodes & cleared*/
 		newNode->data = data;						/*put data in the new root created*/
 		newNode->parent = NULL;
+		return newNode;
 	} 
 	else
 	{	
@@ -114,7 +116,7 @@ NODE* search(NODE *root, int data)
     {
     	search(root->right, data);
     }
-return 0;
+return root;
 }
 
 
@@ -123,7 +125,7 @@ void left_rotate( NODE *node, NODE **root )
     /* Your implementaion goes here */
     NODE *temp;
     temp = node->right;
-    *root->right = temp->left;
+    node->right = temp->left;
     if (temp->left != NULL)
     {
     	temp->left->parent = node;			
@@ -142,7 +144,7 @@ void left_rotate( NODE *node, NODE **root )
     	node->parent->right = temp;
     }
     temp->left = node;
-    *root->parent = temp;
+    node->parent = temp;
 }
 
  
@@ -179,36 +181,36 @@ void splay(NODE *node , NODE **root)
     /* Your implementation goes here */
     while (node->parent != NULL)
     {
-    	if (node->parent == NULL)
+    	if (node->parent->parent == NULL)
     	{
     		if ((node->parent->left) == node)
     		{
-    			right_rotate(node->parent, **root);
+    			right_rotate(node->parent, root);
     		}
     		else 
     		{
-    			left_rotate(node->parent, *root);
+    			left_rotate(node->parent, root);
     		}
 		}
 		else if ((node->parent->left == node) && (node->parent->parent->left == node->parent))
 		{
-			right_rotate(node->parent->parent, *root);
-			right_rotate(node->parent, *root);
+			right_rotate(node->parent->parent, root);
+			right_rotate(node->parent, root);
 		}
 		else if ((node->parent->right == node) && (node->parent->parent->right == node->parent))
 		{
-			left_rotate(node->parent->parent, *root);
-			left_rotate(node->parent, *root);
+			left_rotate(node->parent->parent, root);
+			left_rotate(node->parent, root);
 		}
 		else if ((node->parent->left == node) && (node->parent->parent->right == node->parent))
 		{
-			right_rotate(node->parent, *root);
-			left_rotate(node->parent, *root);
+			right_rotate(node->parent, root);
+			left_rotate(node->parent, root);
 		}
 		else 
 		{
-			left_rotate(node->parent, *root);
-			right_rotate(node->parent, *root);
+			left_rotate(node->parent, root);
+			right_rotate(node->parent, root);
 		}
   	}
 }
@@ -218,7 +220,6 @@ int main()
 {
     int choice, data;
     NODE *root = NULL;
-    NODE *temp = NULL;
     while(1)
     {
         printf("----------------------------------\n");
