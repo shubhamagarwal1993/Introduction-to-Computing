@@ -23,7 +23,7 @@ NODE* insert_splay(NODE *root, int data)
     newNode = NULL;
     root = insert(root, data);
     newNode = search(root, data);
-    splay(newNode, &root);	
+    splay(newNode, &root);			/*we make a new node and use it to call splay*/	
     return root;
 }    
     
@@ -39,16 +39,16 @@ NODE* insert(NODE *root, int data)
 		newNode->left = newNode->right = NULL;		/*new node with 2 subnodes & cleared*/
 		newNode->data = data;						/*put data in the new root created*/
 		newNode->parent = NULL;
-		return newNode;
+		return newNode;								/*the new data is inserted successfully as we return node*/
 	} 
 	else
 	{	
-		if(data < root->data)						/*choosing place for data, left/right*/		
+		if(data < root->data)						/*choosing place to put data, left/right*/		
 		{
 			root->left = insert(root->left,data);	
 			root->left->parent = root;	
 		}
-		else if(data > root->data)					/*choosing place for data, left/right*/
+		else if(data > root->data)					/*choosing place to put data, left/right*/
 		{
 			root->right = insert(root->right,data);
 			root->right->parent = root;
@@ -112,7 +112,7 @@ NODE* search(NODE *root, int data)
     {
     	search(root->left, data);
     }
-    else
+    else							/*searching the data accorfing to the size of it*/
     {
     	search(root->right, data);
     }
@@ -125,7 +125,7 @@ void left_rotate( NODE *node, NODE **root )
     /* Your implementaion goes here */
     NODE *temp;
     temp = node->right;
-    node->right = temp->left;
+    node->right = temp->left;		/*we are rotating the nodes with help of a temporary node*/
     if (temp->left != NULL)
     {
     	temp->left->parent = node;			
@@ -153,7 +153,7 @@ void right_rotate( NODE *node, NODE **root )
     /* Your implementaton goes here */
 	NODE *temp;
 	temp = node->left;
-    node->left = temp->right;
+    node->left = temp->right;		/*we are rotating the nodes with help of a temporary node*/
     if (temp->right != NULL)
     {
     	temp->right->parent = node;	
@@ -187,8 +187,8 @@ void splay(NODE *node , NODE **root)
     		{
     			right_rotate(node->parent, root);
     		}
-    		else 
-    		{
+    		else 							/*every splay function uses all the function above*/
+    		{								/*to make one change to the splay tree.*/
     			left_rotate(node->parent, root);
     		}
 		}
